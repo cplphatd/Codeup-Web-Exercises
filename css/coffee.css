@@ -1,0 +1,16 @@
+body{
+    background-color: #35190D;
+    color: #FFF;
+    background-image: url(../img/coffee.jpg);
+    font-weight: bold;
+    font-family: 'Cinzel', serif;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+h1{
+    text-align: center;
+    font-size: 75px;
+}

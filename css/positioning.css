@@ -1,0 +1,48 @@
+h1{
+    margin: 0px;
+}
+div:nth-of-type(3n+4){
+    clear: left;
+}
+.box{
+    border: 1px solid black;
+    padding: 10px;
+    margin-right: 50px;
+    margin-top: 50px;
+    box-sizing: border-box;
+    height: 72px;
+    width: 72px;
+    font-weight: bold;
+    color: #FFF;
+    float: left;
+    font-size: 15px;
+}
+.ribbon{
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.box>img{
+    position: relative;
+    bottom: 82px;
+    left: 42px;
+}
+#red{
+    background-color: red;
+}
+#orange{
+    background-color: orange;
+}
+#yellow{
+    background-color: yellow;
+}
+#green{
+    background-color: green;
+}
+#blue{
+    background-color: blue;
+}
+#violet{
+    background-color: violet;
+}

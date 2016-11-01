@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Pizza Order</title>
+        <link rel="stylesheet" href="css/pizza-order.css">
+        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Diamond Dave's Pizza</h1>
+        <img src="img/pepperoni.png" id="pizza-pic">
+        <div class="line"></div>
+        <h2>Place your order here</h2>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <p>
+                <label for="email">Your email:</label>
+                <input type="text" id="email" name="email" style="width: 300px;">
+            </p>
+            <div class="line"></div>
+            <p><h3>Please select your toppings</h3></p>
+            <p>Meats:</p>
+            <label>
+                <input type="checkbox" id="pep" name="top[]" value="pep">
+                Pepperoni
+            </label>
+            <label>
+                <input type="checkbox" id="sg" name="top[]" value="sg">
+                Sausage
+            </label>
+            <label>
+                <input type="checkbox" id="ham" name="top[]" value="ham">
+                Ham
+            </label>
+            <p>Vegetables and others:</p>
+            <label>
+                <input type="checkbox" id="pine" name="top[]" value="pine">
+                Pineapple
+            </label>
+            <label>
+                <input type="checkbox" id="m" name="top[]" value=m">
+                Mushrooms
+            </label>
+            <label>
+                <input type="checkbox" id="o" name="top[]" value="o">
+                Olives
+            </label>
+            <div class="line"></div>
+            <p>
+            <h3><label for="crust">Type of crust?</label></h3>
+            </p>
+            <select id="crust" name="crust">
+                <option value="0" selected>Hand-tossed</option>
+                <option value="1">Deep-dish</option>
+                <option value="2">Thin-crust</option>
+            </select>
+            <div class="line"></div>
+            <p><h3>Pickup or Delivery?</h3></p>
+            <label>
+                <input type="radio" name="delivery" value="yes">
+                Delivery
+            </label>
+            <label>
+                <input type="radio" name="delivery" value="no">
+                Pickup
+            </label>
+            <p>
+                <label id="button-label">Click to place order:</label>
+                <button type="submit">
+                    <img id="pizza-button" src="img/pizza-button.png">
+                </button>
+            </p>
+        </form>
+    </body>
+</html>

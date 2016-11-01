@@ -1,0 +1,65 @@
+body{
+    font-family: 'Special Elite', cursive;
+    background-color: whitesmoke;
+}
+.icon{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.jumbotron{
+    background-image: url(../img/seigaiha.png);
+    border-bottom: .07em solid black;
+    height: 43em;
+}
+.line{
+    border: .07em solid black;
+    margin-bottom: .7em;
+}
+.navbar{
+    background-color: dimgrey;
+}
+.nav-button{
+    font-weight:bold;
+    color: whitesmoke;
+    font-size: 1.4em;
+    float: left;
+    margin: .7em;
+}
+.portfolio-list{
+    text-align: left;
+}
+.project{
+    text-align: center;
+}
+.project-img{
+    margin: .7em;
+}
+.resume{
+    text-align: center;
+    position: relative;
+    left: 25em;
+    clear: both;
+}
+.social{
+    margin-top: 3.6em;
+    background-color: dimgrey;
+    height: 3.6em;
+    clear: both;
+}
+.space{
+    margin: 3.6em;
+}
+#email-nav{
+    float: right;
+}
+#headshot{
+    float: right;
+    position: relative;
+    right: 7.1em;
+    top: .7em;
+}
+#subtitle{
+    position: relative;
+    left: 10.7em;
+}

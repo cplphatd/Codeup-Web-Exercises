@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>My First HTML Form</title>
+    </head>
+    <body>
+        <h1>User Login</h1>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <p>
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="Username">
+            </p>
+            <p>
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="Password">
+            </p>
+            <p>
+                <button type="submit">Login</button>
+            </p>
+        </form>
+        <h1>Compose an Email</h1>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <p>
+                <label for="sender">From:  </label>
+                <input type="text" id="sender" name="sender" placeholder="Your email">
+            </p>
+            <p>
+                <label for="recipient">To:  </label>
+                <input type="text" id="recipient" name="recipient" placeholder="Recipient email">
+            </p>
+            <p>
+                <label for="subject">Subject:  </label>
+                <input type="text" id="subject" name="subject">
+            </p>
+            <p>
+                <label for="message">Message:  </label>
+                <textarea id="message" name="message" rows="10" cols="50"></textarea>
+            </p>
+            <p>
+                <label for="list">
+                    Would you like to save a copy of your message?
+                    <input type="checkbox" id="list" name="list" value="yes" checked>
+                </label>
+            </p>
+            <p>
+                <button type="submit">Send</button>
+            </p>
+        </form>
+        <h1>Multiple Choice Test</h1>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <p>Do you like pizza?</p>
+            <label>
+                Yes
+                <input type="radio" name="q1" value="yes">
+            </label>
+            <label>
+                No
+                <input type="radio" name="q1" value="no">
+            </label>
+           <p>
+               <label for="q2">Which activities do you like?</label>
+           </p>
+            <select id="q2" name="q2[]" multiple>
+                <option value="bike">Biking</option>
+                <option value="swim">Swimming</option>
+                <option value="run">Running</option>
+            </select>
+            <p>
+                <button type="submit">Submit my answers</button>
+            </p>
+        </form>
+        <h1>Select Testing</h1>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <label for="sushi">Do you like sushi?</label>
+            <select id="sushi" name="sushi">
+                <option value="1">Yes</option>
+                <option value="0" selected>No</option>
+            </select>
+            <p>
+                <button>Submit</button>
+            </p>
+        </form>
+    </body>
+</html>

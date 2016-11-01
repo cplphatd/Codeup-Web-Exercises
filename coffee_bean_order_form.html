@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Coffee Bean Order Form</title>
+        <link rel="stylesheet" href="css/coffee.css">
+        <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    </head>
+    <body>
+        <h1>Dangerous Coffee Beans</h1>
+        <h2>Place your coffee bean order below</h2>
+        <form method="post" action="http://requestb.in/t5qzmwt5">
+            <p>Type of roast:</p>
+            <label>
+                <input type="radio" name="roast" value="dark">
+                Dark
+            </label>
+            <label>
+                <input type="radio" name="roast" value="light">
+                Light
+            </label>
+            <p>
+                Quantity:
+                <input type="text" name="quantity" placeholder="Amount in lbs" style="width: 75px;">
+            </p>
+            <h2>Customer Information</h2>
+            <p>
+                Name:
+                <input type="text" name="customer" placeholder="First and Last" style="width:200px;">
+            </p>
+            <p>
+                Address 1:
+                <input type="text" name="address1" placeholder="Number and Street">
+            </p>
+            <p>
+                Address 2:
+                <input type="text" name="address2" placeholder="Apt/Suite #">
+            </p>
+            <p>
+                City:
+                <input type="text" name="city" style="width: 200px">
+                State:
+                <input type="text" name="state" style="width:25px;">
+                ZIP Code:
+                <input type="text" name="zip" style="width: 75px;">
+            </p>
+            <p>
+                Auto-renew order each month?
+                <input type="checkbox" name="renew" value="yes">
+            </p>
+            <p><button type="submit">Submit my order</button></p>
+        </form>
+    </body>
+</html>
