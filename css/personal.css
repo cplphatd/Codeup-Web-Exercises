@@ -70,6 +70,9 @@ body{
     position: relative;
     left: .5em;
 }
-#subtitle>a:link{
-    color: white;
+#subtitle>a{
+    color:white;
+}
+#subtitle>a:hover{
+    color: lightgrey;
 }
