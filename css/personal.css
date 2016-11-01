@@ -1,6 +1,8 @@
 body{
     font-family: 'Special Elite', cursive;
     background-color: whitesmoke;
+    max-width: 100em;
+    background-image: url(../img/seigaiha.png);
 }
 .icon{
     display: block;
@@ -8,7 +10,7 @@ body{
     margin-right: auto;
 }
 .jumbotron{
-    background-image: url(../img/seigaiha.png);
+    background-image: url(../img/tokyo.jpeg);
     border-bottom: .07em solid black;
     height: 43em;
 }
@@ -38,7 +40,7 @@ body{
 .resume{
     text-align: center;
     position: relative;
-    left: 25em;
+    left: 19em;
     clear: both;
 }
 .social{
@@ -61,5 +63,13 @@ body{
 }
 #subtitle{
     position: relative;
-    left: 10.7em;
+    left: 4.5em;
+    clear: left;
+}
+#title{
+    position: relative;
+    left: .5em;
+}
+#subtitle>a:link{
+    color: white;
 }
