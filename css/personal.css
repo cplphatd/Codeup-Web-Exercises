@@ -20,16 +20,6 @@ body{
     border: .07em solid black;
     margin-bottom: .7em;
 }
-.navbar{
-    background-color: dimgrey;
-}
-.nav-button{
-    font-weight:bold;
-    color: ghostwhite;
-    font-size: 1.4em;
-    float: left;
-    margin: .7em;
-}
 .portfolio-list{
     text-align: left;
 }

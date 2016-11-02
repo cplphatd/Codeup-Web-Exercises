@@ -12,11 +12,24 @@
         <link rel="icon" href="img/favicon.ico">
     </head>
     <body>
-        <nav class="navbar navbar-fixed-top">
-            <a class="nav-button" href="welcome.html">Home</a>
-            <a class="nav-button" href="resume.html">Resume</a>
-            <a class="nav-button" href="portfolio.html">Portfolio</a>
-            <a id="email-nav" class="nav-button" href="mailto:david.alviola@gmail.com">david.alviola@gmail.com</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="mailto:david.alviola@gmail.com">david.alviola@gmail.com</a> <!--float this element right-->
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="welcome.html">Home</a></li>
+                        <li><a href="resume.html">Resume</a></li>
+                        <li class="active"><a href="portfolio.html">Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
         <div class="space"></div>
         <div class="col-sm-12 col-md-12 col-lg-6 project">

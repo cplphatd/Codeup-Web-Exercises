@@ -12,15 +12,28 @@
         <link rel="icon" href="img/favicon.ico">
     </head>
     <body>
-        <nav class="navbar navbar-fixed-top">
-            <a class="nav-button" href="welcome.html">Home</a>
-            <a class="nav-button" href="resume.html">Resume</a>
-            <a class="nav-button" href="portfolio.html">Portfolio</a>
-            <a class="nav-button" id="email-nav" href="mailto:david.alviola@gmail.com">david.alviola@gmail.com</a>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="mailto:david.alviola@gmail.com">david.alviola@gmail.com</a> <!--float this element right-->
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="welcome.html">Home</a></li>
+                        <li class="active"><a href="resume.html">Resume</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                    </ul>
+                </div>
+            </div>
         </nav>
         <div class="space"></div>
         <ul class="nav nav-tabs col-sm-6 col-md-6 col-lg-8 resume">
-            <li class="active"><a data-toggle="tab" href="#about">About Me</a></li>
+            <li class="active"><a data-toggle="tab" href="#about">About</a></li>
             <li><a data-toggle="tab" href="#school">Education</a></li>
             <li><a data-toggle="tab" href="#work">Work</a></li>
             <li><a data-toggle="tab" href="#award">Awards</a></li>
@@ -104,84 +117,7 @@
                 <div class="space"></div>
             </div>
         </div>
-        <!--
-        <div id=about; class="col-sm-6 col-md-6 col-lg-8 resume">
-            <h1>About Me</h1>
-            <div class="line"></div>
-            <p>
-                After graduating from high school in San Antonio, I attended college at the University of Texas in Austin where I studied biology.
-                Rather than continue on to medical school, I joined the Navy as an officer and was commissioned through
-                Officer Candidate School in Newport, Rhode Island. I served in the Navy for 5 years and was stationed in:
-                Sasebo, Japan; Charleston, South Carolina; Bremerton, Washington; and San Diego, California.
-                After separating from the Navy, I earned my MBA in Interntional Business at Texas State University.
-            </p>
-            <p>
-                During my time at Texas State, I was exposed to a program called R-Project which we used to perform statistical analysis on data.
-                The language for R-Project was very similar to programming languages like JavaScript or C++ and I found myself enjoying working with
-                R-Project when other students were not. After graduating, I wanted to learn coding skills to make myself a better job candidate.
-                I enjoy coding because you get the opportunity to create something and apply problem solving skills.
-            </p>
-        </div>
-        <div id="school" class="col-sm-6 col-md-6 col-lg-8 resume">
-            <h1>Education</h1>
-            <div class="line"></div>
-            <h3>Codeup</h3>
-            <h4>San Antonio, TX</h4>
-            <h4>October 2016 - March 2017</h4>
-            Full stack web development - HTML, CSS, JavaScript
-            <div class="space"></div>
-            <h3>Texas State University</h3>
-            <h4>San Marcos, TX</h4>
-            <h4>August 2014 - August 2016</h4>
-            Master Business Administration - International Business
-            <div class="space"></div>
-            <h3>Naval Nuclear Power Training Command</h3>
-            <h4>Goose Creek, SC</h4>
-            <h4>January 2011 - February 2012</h4>
-            Nuclear power plant systems and operations
-            <div class="space"></div>
-            <h3>University of Texas</h3>
-            <h4>Austin, TX</h4>
-            <h4>January 2005 - August 2008</h4>
-            Bachelor's of Science - Biology
-        </div>
-        <div id="work" class="col-sm-6 col-md-6 col-lg-8 resume">
-            <h1>Work Experience</h1>
-            <div class="line"></div>
-            <h3>MBA Student Consultant, Project RIO</h3>
-            <h4>Occidental Petroleum Corporation</h4>
-            <h4>January 2016 - May 2016</h4>
-            Discovered current and emerging technologies for use in the oilfield.
-            <div class="space"></div>
-            <h3>Reactor Electrical Division Officer</h3>
-            <h4>USS RONALD REAGAN, US Navy</h4>
-            <h4>March 2012 - March 2014</h4>
-            Led 56 technicians who operated, maintained, and repaired electrical power generation and distribution
-            equipment of the ship's propulsion plant.
-            <div class="space"></div>
-            <h3>Combat Information and Electronic Warfare Officer</h3>
-            <h4>USS HARPERS FERRY, US Navy</h4>
-            <h4>March 2009 - December 2010</h4>
-            Led 20 individuals who received and processed operational reports and intelligence to support the crew's
-            mission.
-        </div>
-        <div id="award" class="col-sm-6 col-md-6 col-lg-8 resume">
-            <h1>Awards and Recognition</h1>
-            <div class="line"></div>
-            <h3>Beta Gamma Sigma Member</h3>
-            <h4>April 2016</h4>
-            Inducted into the international business honor society, Beta Gamma Sigma.
-            Recognizes business scholars in programs accredited by the AACSB.
-            <div class="space"></div>
-            <h3>Navy Achievement Medal</h3>
-            <h4>March 2014 and December 2010</h4>
-            Recognized for superior performance of duties onboard USS RONALD REAGAN and USS HARPERS FERRY.
-            <div class="space"></div>
-            <h3>University of Texas Honors List</h3>
-            <h4>August 2006 - May 2008</h4>
-            Recognized for outstanding academic performance.
-            <div class="space"></div>
-        </div>
+       <!--
         <div class="social">
             <a class="col-sm-4 col-md-4 col-lg-4" href="https://github.com/cplphatd/Codeup-Web-Exercises" target="_blank">
                 <img class="icon" src="img/github.png">
@@ -192,6 +128,7 @@
             <a class="col-lg-4 col-md-4 col-sm-4" href="https://www.linkedin.com/in/david-ryan-alviola-5575aa48" target="_blank">
                 <img class="icon" src="img/linkedin.png">
             </a>
-        </div>-->
+        </div>
+        -->
     </body>
 </html>
