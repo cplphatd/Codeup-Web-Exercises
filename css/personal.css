@@ -4,6 +4,10 @@ body{
     background-image: url(../img/seigaiha.png);
     font-size: 1.5em;
 }
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+}
 .icon{
     display: block;
     margin-left: auto;
@@ -19,6 +23,12 @@ body{
 .line{
     border: .07em solid black;
     margin-bottom: .7em;
+}
+.navbar-brand{
+    padding-left: 1.5em;
+}
+.navbar-nav{
+    padding-right: 1em;
 }
 .portfolio-list{
     text-align: left;
