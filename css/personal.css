@@ -3,11 +3,14 @@ body{
     background-color: whitesmoke;
     max-width: 100em;
     background-image: url(../img/seigaiha.png);
+    font-size: 1.5em;
 }
 .icon{
     display: block;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    top: 1em;
 }
 .jumbotron{
     background-image: url(../img/tokyo.jpeg);
@@ -23,7 +26,7 @@ body{
 }
 .nav-button{
     font-weight:bold;
-    color: whitesmoke;
+    color: ghostwhite;
     font-size: 1.4em;
     float: left;
     margin: .7em;
@@ -40,17 +43,21 @@ body{
 .resume{
     text-align: center;
     position: relative;
-    left: 19em;
+    left: 17em;
     clear: both;
 }
 .social{
     margin-top: 3.6em;
     background-color: dimgrey;
-    height: 3.6em;
+    height: 6em;
     clear: both;
 }
 .space{
     margin: 3.6em;
+}
+.nav-button:hover{
+    text-decoration: none;
+    color: lightgrey;
 }
 #email-nav{
     float: right;
@@ -63,16 +70,18 @@ body{
 }
 #subtitle{
     position: relative;
-    left: 4.5em;
+    left: 1.25em;
     clear: left;
 }
 #title{
     position: relative;
-    left: .5em;
+    left: .25em;
+    color: ghostwhite;
 }
 #subtitle>a{
-    color:white;
+    color:ghostwhite;
 }
 #subtitle>a:hover{
     color: lightgrey;
+    text-decoration: none;
 }
