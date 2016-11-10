@@ -253,3 +253,15 @@ function countDown(start, stop, step) {
 countDown(100, 0, 5);
 
 //From now on, work on having functions return values rather than using console.log
+
+//Write a function that takes an array as a parameter and picks a random element from array and returns it
+
+var myArray = ["Xray", "Charlie", "Oscar", "Tango"];
+var randomElement;
+
+function getRandomElement (array) {
+    var randomNumber = Math.floor(Math.random() * (array.length - 1)) + 1;
+    return randomElement = array[randomNumber];
+}
+
+console.log(getRandomElement(myArray));

@@ -8,6 +8,7 @@
     console.log("Length of array: " + names.length);
 
     // TODO: Create log statements that will print each of the names array elements individually.
+    //for loop
     for (var i = 0; i < names.length; i += 1) {
         console.log(names[i]);
     }
