@@ -12,23 +12,38 @@
     var books = [
         {
             title : "Count of Monte Cristo",
-            author : "Alexander Dumas"
+            author : {
+                firstName: "Alexander",
+                lastName: "Dumas"
+            }
         },
         {
             title : "The Old Man and the Sea",
-            author : "Ernest Hemingway"
+            author : {
+                firstName: "Ernest",
+                lastName: "Hemingway"
+            }
         },
         {
             title : "1984",
-            author : "George Orwell"
+            author : {
+                firstName: "George",
+                lastName: "Orwell"
+            }
         },
         {
             title : "Heart of Darkness",
-            author : "Joseph Conrad"
+            author : {
+                firstName: "Joseph",
+                lastName: "Conrad"
+            }
         },
         {
             title : "The Great Gatsby",
-            author : "F Scott Fitzgerald"
+            author : {
+                firstName: "F Scott",
+                lastName: "Fitzgerald"
+            }
         }
     ];
 
@@ -38,10 +53,10 @@
 // todo:
 // Loop through the array of books using .forEach and print out the specified information about each one.
 // start loop here
-    books.forEach(function(element, index, array) {
+    books.forEach(function(book, index) {
         console.log("Book #" + (index+1));
-        console.log("Title: " + array[index].title);
-        console.log("Author: " + array[index].author);
+        console.log("Title: " + book.title);
+        console.log("Author: " + book.author.firstName + " " + book.author.lastName);
         console.log("---");
     })
 // end loop here
