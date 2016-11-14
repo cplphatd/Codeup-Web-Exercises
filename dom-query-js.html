@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM: Query and Modify</title>
+</head>
+<body>
+
+<h1 id="main-header">Hello World!</h1>
+<button id="headerButton">Change header</button>
+<ul>
+    <li data-dbid="1">Item 1</li>
+    <li data-dbid="2">Item 2</li>
+    <li data-dbid="3">Item 3</li>
+    <li data-dbid="4">Item 4</li>
+    <li data-dbid="5">Item 5</li>
+</ul>
+<button id="listItemColorButton">Change colors</button>
+<h2 id="sub-header">Hello Again.</h2>
+<button id="subHeaderButton">Change color</button>
+<p class="sub-paragraph">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+    aliquip ex ea commodo consequat. Duis aute irure dolor in
+    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+</p>
+<button id="changeParaButton">Change text</button>
+<br>
+<h2 id="message">This BOM will self destruct in <span id="timer">5</span> seconds...</h2>
+<button id="bombArm">Arm Bomb</button>
+<button id="bombDisarm">Disarm Bomb</button>
+<script>
+    (function() {
+        "use strict";
+        // TODO: Uncomment next line and get the main header element by id
+        var mainHeader = document.getElementById("main-header") ;
+
+        function changeHeader () {
+            mainHeader.innerHTML = "JavaScript is Cool";
+        }
+
+        // TODO: Set inner html of mainHeader to "JavaScript is Cool"
+        document.getElementById("headerButton").addEventListener("click", changeHeader, false);
+
+        // TODO: Uncomment the next line and get the sub header element by id
+        var subHeader = document.getElementById("sub-header");
+
+        // TODO: Set the text color of subHeader to blue
+        function changeSubHeaderColor () {
+            subHeader.style.color = "blue";
+        }
+
+        document.getElementById("subHeaderButton").addEventListener("click", changeSubHeaderColor, false);
+
+        // TODO: Uncomment the next line and get all list items
+        var listItems = document.getElementsByTagName("li");
+
+        // TODO: Set text color on every other list item to grey
+        function changeListItemsColor () {
+            for (var i = 0; i < listItems.length; i += 2) {
+                listItems[i].style.color = "grey";
+            }
+
+        // TODO: Set text color of li with dbid = 1 to blue
+            for (i = 0; i < listItems.length; i +=1) {
+                if (listItems[i].getAttribute("data-dbid") == 1) {
+                    listItems[i].style.color = "blue";
+                }
+            }
+        }
+
+        document.getElementById("listItemColorButton").addEventListener("click", changeListItemsColor, false);
+
+        // TODO: Uncomment the next line and get all elements with class name sub-paragraph
+        var subParagraphs = document.getElementsByClassName("sub-paragraph");
+
+        // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
+        function changeParagraph () {
+            subParagraphs[0].innerText = "Mission accomplished!";
+        }
+
+        document.getElementById("changeParaButton").addEventListener("click", changeParagraph, false);
+
+        //Bomb timer variables
+        var detonationTimer = 5;        //where the timer starts
+        var min = 0;                    //where the timer will end
+        var interval = 1000;            //time between counts in ms
+
+        // Function for bomb timer
+        function updateTimer() {
+            if (detonationTimer == min) {
+                alert('BOOM!');
+                document.body.innerHTML = '';
+                clearInterval(bombTimer);
+                location.reload();
+            } else if (detonationTimer > min) {
+                document.getElementById('timer').innerHTML = detonationTimer;
+            }
+            detonationTimer--;
+        }
+
+        var bombTimer;
+        function startBombTimer () {
+            bombTimer = setInterval(updateTimer, interval);
+        }
+
+        //Event listener for bomb arm button
+        document.getElementById("bombArm").addEventListener("click", startBombTimer);
+
+        //Function to disarm the bomb
+        function disarmBomb () {
+            clearInterval(bombTimer);
+            alert("You disarmed the bomb!");
+            location.reload();
+        }
+
+        //Event listener for bomb disarm button
+        document.getElementById("bombDisarm").addEventListener("click", disarmBomb);
+
+    })();
+</script>
+</body>
+</html>
