@@ -1,0 +1,24 @@
+.button {
+    width: 5em;
+    height: 5em;
+    margin-right: 2.1em;
+    font-weight: bold;
+}
+
+.display {
+    height: 3em;
+}
+
+.fluid-container {
+    margin-left: 2em;
+    font-size: 18px;
+}
+
+.spacer {
+    height: 2em;
+}
+
+#operator {
+    width: 5em;
+    text-align: center;
+}

@@ -32,11 +32,11 @@ function input() {
     do {
         userNum1 = prompt("What is the first number?");
         userNum1 = parseFloat(userNum1); //converts string from prompt into a number
-    } while (userNum1 / userNum1 != 1);
+    } while (userNum1 / 1 != userNum1);
     do {
         userNum2 = prompt("What is the second number?");
         userNum2 = parseFloat(userNum2);
-    } while (userNum2 / userNum2 != 1);
+    } while (userNum2 / 1 != userNum2);
 }
 
 //Allow the user to choose what operation they want to perform
