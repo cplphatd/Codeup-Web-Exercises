@@ -18,6 +18,11 @@
     height: 2em;
 }
 
+#msg {
+    font-weight: bold;
+    color: red;
+    margin-left: 3em;
+}
 #operator {
     width: 5em;
     text-align: center;
