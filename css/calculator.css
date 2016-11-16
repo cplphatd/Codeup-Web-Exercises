@@ -1,7 +1,7 @@
 .button {
-    width: 5em;
-    height: 5em;
-    margin-right: 2.1em;
+    width: 4.5em;
+    height: 4.5em;
+    margin-right: 2.7em;
     font-weight: bold;
 }
 
@@ -9,7 +9,13 @@
     height: 3em;
 }
 
+.far-left-button {
+    margin-left: 2.1em;
+}
+
 .fluid-container {
+    width: 32em;
+    border: 1px solid black;
     margin-left: 2em;
     font-size: 18px;
 }
@@ -21,8 +27,13 @@
 #msg {
     font-weight: bold;
     color: red;
-    margin-left: 3em;
+    margin-left: 5em;
 }
+
+#leftOperand {
+    margin-left: 2em;
+}
+
 #operator {
     width: 5em;
     text-align: center;
