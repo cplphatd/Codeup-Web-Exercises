@@ -1,33 +1,70 @@
+body {
+    background-color: #cecece;
+}
+
 .button {
     width: 4.5em;
     height: 4.5em;
     margin-right: 2.7em;
     font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+    box-shadow: 2em;
+    text-align: center;
 }
 
 .display {
     height: 3em;
+    font-family: 'Press Start 2P', cursive;
+    font-size: .8em;
+    font-weight: bold;
+    text-align: center;
 }
 
 .far-left-button {
-    margin-left: 2.1em;
+    margin-left: 2.7em;
 }
 
 .fluid-container {
-    width: 32em;
+    width: 40em;
     border: 1px solid black;
     margin-left: 2em;
+    margin-bottom: .2em;
     font-size: 18px;
+    background-color: #2D364C;
+    float: left;
+}
+
+.num-btn {
+    background-color: #3C62A3;
+    color:#FFF;
+}
+
+.operator-btn {
+    background-color: #D0E800;
+}
+
+.other-btn {
+    background-color: #ED7D2D;
+}
+
+.rounded {
+    border-radius:  .5em;
 }
 
 .spacer {
     height: 2em;
 }
 
+#btnClear {
+    background-color: #DD0000;
+}
+
 #msg {
     font-weight: bold;
+    font-size: .7em;
     color: red;
-    margin-left: 5em;
+    margin-left: 1.6em;
+    font-family: 'Press Start 2P', cursive;
 }
 
 #leftOperand {
@@ -36,5 +73,11 @@
 
 #operator {
     width: 5em;
+}
+
+#title {
+    margin-top: .2em;
+    margin-right: 1em;
     text-align: center;
+    font-family: 'Press Start 2P', cursive;
 }
