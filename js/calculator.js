@@ -218,19 +218,19 @@
     function calculate () {
         switch (operator) {
             case "+" :
-                total = leftOperandValueForMath + rightOperandValueForMath;
+                total = ((leftOperandValueForMath*100) + (rightOperandValueForMath*100))/100;
                 displayedLeftOperandValue = total;
                 leftOperandValueForMath = total;
                 enterRightOperand ();
                 break;
             case "-" :
-                total = leftOperandValueForMath - rightOperandValueForMath;
+                total = ((leftOperandValueForMath * 100) - (rightOperandValueForMath * 100))/100;
                 displayedLeftOperandValue = total;
                 leftOperandValueForMath = total;
                 enterRightOperand ();
                 break;
             case "*" :
-                total = leftOperandValueForMath * rightOperandValueForMath;
+                total = ((leftOperandValueForMath * 100) * (rightOperandValueForMath * 100))/10000;
                 displayedLeftOperandValue = total;
                 leftOperandValueForMath = total;
                 enterRightOperand ();
@@ -270,7 +270,7 @@
                     btnPosNeg.removeEventListener("click", negateRightOperand);
                     btnEquals.removeEventListener("click", pressEquals);
                 } else {
-                    total = leftOperandValueForMath / rightOperandValueForMath;
+                    total = (leftOperandValueForMath * 100) / (rightOperandValueForMath * 100);  //multiply by 100 then divide by 100 to bypass problems with floating point math
                     displayedLeftOperandValue = total;
                     leftOperandValueForMath = total;
                     enterRightOperand();
@@ -278,7 +278,7 @@
                 break;
             case "sq" :
                 rightOperandValueForMath = leftOperandValueForMath;
-                total = leftOperandValueForMath * rightOperandValueForMath;
+                total = ((leftOperandValueForMath * 100) * (rightOperandValueForMath * 100))/10000;
                 displayedLeftOperandValue = total;
                 leftOperandValueForMath = total;
                 enterRightOperand ();

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Googlemaps API Exercise</title>
+        <style type="text/css">
+            #map-canvas {
+                width: 770px;
+                height: 481px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- div to hold map -->
+        <div id="map-canvas"></div>
+
+        <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChdBokQvH3v_Y3gOzXEl6EEjOAkYPISRM"></script>
+
+        <!-- Script to show address on map -->
+        <script type="text/javascript">
+            (function() {
+                "use strict";
+
+                // Set our map options
+                var mapOptions = {
+                    // Set the zoom level
+                    zoom: 14,
+
+                    // This sets the center of the map at our location
+                    center: {
+                        lat:  29.426791,
+                        lng: -98.489602
+                    }
+                };
+
+                // Render the map
+                var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+                //Declare and initialize geocoder
+                var geocoder = new  google.maps.Geocoder();
+
+                //Street Address
+                var address = "306 E 53rd St, Austin, TX 78751";
+
+                geocoder.geocode({"address": address}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);  //Recenters map over address
+                    } else {
+                        alert("Geocoding was not successful - STATUS: " + status);
+                    }
+                });
+
+                //Create an array of objects that will hold the properties for the markers
+                var markerInformation = [
+                    {
+                        position: {
+                            lat: 30.318751,
+                            lng: -97.738968
+                        },
+                        map: map,
+                        animation: google.maps.Animation.DROP
+                    },
+                    {
+                        position: {
+                            lat: 30.317077,
+                            lng: -97.719509
+                        },
+                        map: map,
+                        animation: google.maps.Animation.DROP
+                    },
+                    {
+                        position: {
+                            lat: 30.303546,
+                            lng: -97.698893
+                        },
+                        map: map,
+                        animation: google.maps.Animation.DROP
+                    }
+                ];
+
+                //.forEach to go through the array of markers and render each one
+                var createdMarkers = [];
+                markerInformation.forEach(function (marker, index) {
+                    createdMarkers[index] = new google.maps.Marker(marker);
+                });
+
+                //Create an array of objects to hold the properties of the info windows
+                var infoWindowContents = [
+                    {
+                        content: "<h1>Pinthouse Pizza</h1><br>Delicious personal size pizzas with a wide variety of beer!"
+                    },
+                    {
+                        content: "<h1>Foreign and Domestic</h1><br>Great farm fresh American cuisine. Try the pepper popovers."
+                    },
+                    {
+                        content: "<h1>Torchy's Tacos</h1><br>Not authentic Mexican tacos, but who cares?" +
+                        "<br>Good food, beer, and awesome patio area."
+                    }
+                ];
+
+                //Create the windows
+                var infoWindows = [];
+                infoWindowContents.forEach(function (info, index) {
+                    infoWindows[index] = new google.maps.InfoWindow(info);
+                    createdMarkers[index].addListener("click", openInfoWindow);
+                });
+
+                //Functions for opening individual info windows
+                var openInfoWindow = function () {
+                    infoWindows.forEach(function (info, index) {
+                        info.open(map,createdMarkers[index]);
+                    })
+                }
+
+
+
+//                var openPizzaWindow = function () {
+//                    infoWindows[0].open(map, createdMarkers[0]);
+//                };
+//
+//                var openForeignWindow = function () {
+//                    infoWindows[1].open(map, createdMarkers[1]);
+//                };
+//
+//                createdMarkers[0].addListener("click", openPizzaWindow);
+//                createdMarkers[1].addListener("click", openForeignWindow);
+                // /Create an info window
+//                var infoWindow = new google.maps.InfoWindow ({
+//                    content: "<h1>Pinthouse Pizza</h1><br>Delicious personal size pizzas with a wide variety of beer!"
+//                });
+
+                //Open info window using map marker
+//                var openInfoWindow = function () {
+//                    infoWindow.open(map, marker);
+//                }
+
+
+                //Adding an event listener to the marker makes it so that the info window only shows when marker is clicked
+//                marker.addListener("click", openInfoWindow);
+            })();
+        </script>
+    </body>
+</html>
