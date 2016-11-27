@@ -7,9 +7,28 @@
         <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Francois+One|Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Bungee+Shade|Francois+One|Montserrat|Playfair+Display+SC" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Scope+One" rel="stylesheet">
         <style type="text/css">
             body {
                 background-color: ghostwhite;
+            }
+            .image {
+                float: right;
+                border: 1px solid black;
+                margin-left: .5em;
+            }
+            .info {
+                font-size: 1.1em;
+                font-family: 'Scope One', serif;
+            }
+            .input {
+                width: 50em;
+                margin-left: 20em;
+                margin-top: 1em;
+            }
+            .title {
+                text-align: center;
+                font-family: 'Shrikhand', cursive;
             }
             a:link {
                 text-decoration: none;
@@ -28,19 +47,21 @@
                 font-weight: bold;
                 margin-bottom: .05em;
             }
-            #title {
-                text-align: center;
-                font-family: 'Shrikhand', cursive;
-            }
             #torchy {
                 font-family: 'Bungee Shade', cursive;
             }
         </style>
     </head>
     <body>
-        <div><h1 id="title">My Favorite Austin Restuarnts</h1></div>
-        <!-- div to hold map -->
-        <div id="map-canvas"></div>
+        <div class="container-fluid">
+            <div><h1 class="title">My Favorite Austin Restuarnts</h1></div>
+            <!-- div to hold map -->
+            <div id="map-canvas"></div>
+            <!--<h2 class="title">Add your own favorite restuarant!</h2>-->
+            <!--<input type="text" placeholder="Enter address" class="input" id="address">-->
+            <!--<input type="text" placeholder="Enter comment" class="input" id="comment">-->
+            <!--<button id="submit">Submit</button>-->
+        </div>
 
         <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChdBokQvH3v_Y3gOzXEl6EEjOAkYPISRM"></script>
@@ -79,7 +100,8 @@
                         map: map,
                         animation: google.maps.Animation.DROP,
                         info: "<a href='http://pinthousepizza.com/' target='_blank'><h1 id='pinthouse'>Pinthouse Pizza</h1></a>" +
-                        "<br><img src='img/pinthouse_pizza.jpg'><br>Delicious personal size pizzas with a wide variety of beer!",
+                        "<br><img class='image' src='img/pinthouse_pizza.jpg'><div class='info'>Delicious personal size" +
+                        " pizzas with a wide variety of beer!</div>",
                         icon: "http://maps.google.com/mapfiles/ms/micons/restaurant.png"
                     },
                     {
@@ -90,7 +112,9 @@
                         },
                         map: map,
                         animation: google.maps.Animation.DROP,
-                        info: "<a href='http://fndaustin.com' target='_blank'><h1 id='foreign'>Foreign and Domestic</h1></a><br>Great farm fresh American cuisine. Try the pepper popovers.",
+                        info: "<a href='http://fndaustin.com' target='_blank'><h1 id='foreign'>Foreign and Domestic</h1></a>" +
+                        "<br><img class='image' src='img/fnd.jpg'><div class='info'>Great farm fresh American cuisine. " +
+                        "Try the pepper popovers.</div>",
                         icon: "http://maps.google.com/mapfiles/ms/micons/restaurant.png"
                     },
                     {
@@ -101,8 +125,10 @@
                         },
                         map: map,
                         animation: google.maps.Animation.DROP,
-                        info: "<a href='http://torchystacos.com' target='_blank'><h1 id='torchy'>Torchy's Tacos</h1></a><br>Not authentic Mexican tacos, but who cares?" +
-                        "<br>Good food, beer, and awesome patio area.",
+                        info: "<a href='http://torchystacos.com' target='_blank'><h1 id='torchy'>Torchy's Tacos</h1></a>" +
+                        "<img class='image' src='img/torchy.jpg'>" +
+                        "<div class='info'>Not authentic Mexican tacos, but who cares?" +
+                        "<br>Good food, beer, and awesome patio area.</div>",
                         icon: "http://maps.google.com/mapfiles/ms/micons/restaurant.png"
                     }
                 ];
@@ -125,6 +151,30 @@
                         }
                     });
                 });
+
+                //function to plot markers for user inputted addresses
+//                var userIndex = 0;
+//                var userMarker = function (address, comment) {
+//                    var infoWindows = [];
+//                    var createdMarkers = [];
+//                    address = document.getElementById("address");
+//                    comment = document.getElementById("comment");
+//                    geocoder.geocode({"address": address.value}, function (results, status) {
+//                        if (status == google.maps.GeocoderStatus.OK) {
+//                            createdMarkers[userIndex] = new google.maps.Marker(address.value);
+//                            infoWindows[userIndex] = new google.maps.InfoWindow({
+//                                content: comment.value
+//                            });
+//                            createdMarkers[userIndex].addListener("click", function () {
+//                                infoWindows[userIndex].open(map, createdMarkers[userIndex]);
+//                            })
+//                        } else {
+//                            alert("Geocoding was not successful - STATUS: " + status);
+//                        }
+//                    });
+//                    userIndex += 1;
+//                }
+//                document.getElementById("submit").addEventListener("click", userMarker);
             })();
         </script>
     </body>
