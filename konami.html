@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Konami Code</title>
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+        <style>
+            body {
+                background-color: black;
+            }
+            .hidden {
+                visibility: hidden;
+            }
+            .text {
+                text-align: center;
+                color: ghostwhite;
+                font-family: 'Press Start 2P', cursive;
+            }
+            #reset {
+                margin-left: 59em;
+                margin-top: 1em;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="title" class="text">Enter the Konami code!</h1>
+        <div class="text">(Press "enter" for the start button)</div>
+        <button id="reset">Reset</button>
+        <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+                crossorigin="anonymous"></script>
+        <script>
+            var userBtnPress;   //captures key code from each button press
+            var userBtnSequence = [];   //will hold the key code from each button press into one string
+            var music = new Audio("audio/contra.mp3");
+
+            //function to reload the page
+            var reloadPage = function () {
+                location.reload();
+            };
+
+            $(document).ready(function() {
+                $("#reset").click(reloadPage);
+                $("body").keyup(function() {
+                    userBtnPress = event.keyCode;
+                    userBtnSequence += userBtnPress;
+                    if(userBtnSequence === "38384040373937396665666513") {
+                        alert("You have added 30 lives!");
+                        $("body").css("background-image", "url(img/contra.jpg)").css("background-repeat", "no-repeat");
+                        music.play();
+                        $(".text").addClass("hidden");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

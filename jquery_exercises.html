@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery Exercises</title>
+        <style>
+            .listItem {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id="codeup">Title</h1>
+        <p class="codeup">The community could regulate itself by ostrasizing harmful elements such as ninjas, slackers and jerks.
+            I could hold Draenei Ruins and see across to <span id="highlight">Blood Elf Tower</span> and freak out the offense. The setting is the
+            thing with TSW, first, foremost, and absolute. Now, there’s a very lore-centric reason that Turbine chose to
+            exclude female dwarves, and it’s not that they don’t exist. Just to remind me that an MMO isn't all sweetness
+            and light, I encountered an Imperial L50 on Tatooine the other day. After that bit of shenanigans, Cool and
+            I looked at buying another vendor set for my Shadow spec but I was having a lot of crashing issues as soon as
+            I ported from Org to the Valley.
+        </p>
+        <ul id="listOne">
+            <li class="codeup">Item 1</li>
+            <li>Item 2</li>
+            <li class="codeup">Item 3</li>
+        </ul>
+        <ol>
+            <li>Odd Item</li>
+            <li>Even Item</li>
+            <li>Odd Item</li>
+            <li>Even Item</li>
+            <li>Odd Item</li>
+        </ol>
+        <div id="spacer"></div>
+        <script src="js/jquery-2.2.4.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("h1").click(function() {
+                    $("h1").css("background-color", "yellow");
+                });
+                $("p").dblclick(function() {
+                    $("p").css("font-size", "18px");
+                });
+                $("li").hover(
+                    function() {
+                        $("li").css("color", "red");
+                    },
+                    function() {
+                        $("li").css("color", "white");
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>
