@@ -17,21 +17,34 @@
                 font-family: 'Press Start 2P', cursive;
             }
             #reset {
-                margin-left: 59em;
+                margin-left: auto;
+                margin-right: auto;
                 margin-top: 1em;
+                width: 5em;
+                text-align: center;
             }
         </style>
     </head>
     <body>
-        <h1 id="title" class="text">Enter the Konami code!</h1>
-        <div class="text">(Press "enter" for the start button)</div>
-        <button id="reset">Reset</button>
+        <div class="container-fluid">
+            <h1 id="title" class="text">Enter the Konami code!</h1>
+            <div class="text">(Press "enter" for the start button)</div>
+            <p id="reset" class="hidden"><button>Reset</button></p>
+        </div>
         <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
                 crossorigin="anonymous"></script>
         <script>
+            //Can also store Konami code in an array, then store user presses in an arry, then use .indexOf(konamiCode) to find the
+            //sequence of konamiCode anywhere within the user button press array.
             var userBtnPress;   //captures key code from each button press
             var userBtnSequence = [];   //will hold the key code from each button press into one string
+            var konamiCode = ["38,38,40,40,37,39,37,39,66,65,13"];
             var music = new Audio("audio/contra.mp3");
+
+            //function to convert userBtnSequence to string
+            var convertToString = function (array) {
+                return array.toString();
+            };
 
             //function to reload the page
             var reloadPage = function () {
@@ -41,14 +54,15 @@
             $(document).ready(function() {
                 $("#reset").click(reloadPage);
                 $("body").keyup(function() {
-                    userBtnPress = event.keyCode;
-                    userBtnSequence += userBtnPress;
-                    if(userBtnSequence === "38384040373937396665666513") {
-                        alert("You have added 30 lives!");
+                   userBtnPress = event.keyCode;
+                   userBtnSequence.push(userBtnPress);
+                   if (convertToString(userBtnSequence).lastIndexOf(konamiCode) >= 0) {
+                       alert("You have added 30 lives!");
                         $("body").css("background-image", "url(img/contra.jpg)").css("background-repeat", "no-repeat");
                         music.play();
                         $(".text").addClass("hidden");
-                    }
+                        $("#reset").removeClass("hidden");
+                   }
                 });
             });
         </script>
