@@ -2,14 +2,14 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Konami Code</title>
+        <title>Konami Code Exercise</title>
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
         <style>
             body {
                 background-color: black;
             }
             .hidden {
-                visibility: hidden;
+                display: none;
             }
             .text {
                 text-align: center;
@@ -20,7 +20,6 @@
                 margin-left: auto;
                 margin-right: auto;
                 margin-top: 1em;
-                width: 5em;
                 text-align: center;
             }
         </style>
@@ -34,8 +33,6 @@
         <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
                 crossorigin="anonymous"></script>
         <script>
-            //Can also store Konami code in an array, then store user presses in an arry, then use .indexOf(konamiCode) to find the
-            //sequence of konamiCode anywhere within the user button press array.
             var userBtnPress;   //captures key code from each button press
             var userBtnSequence = [];   //will hold the key code from each button press into one string
             var konamiCode = ["38,38,40,40,37,39,37,39,66,65,13"];
@@ -58,10 +55,10 @@
                    userBtnSequence.push(userBtnPress);
                    if (convertToString(userBtnSequence).lastIndexOf(konamiCode) >= 0) {
                        alert("You have added 30 lives!");
-                        $("body").css("background-image", "url(img/contra.jpg)").css("background-repeat", "no-repeat");
-                        music.play();
-                        $(".text").addClass("hidden");
-                        $("#reset").removeClass("hidden");
+                       $("body").css("background-image", "url(img/contra.jpg)").css("background-repeat", "no-repeat");
+                       music.play();
+                       $(".text").addClass("hidden");
+                       $("#reset").removeClass("hidden");
                    }
                 });
             });

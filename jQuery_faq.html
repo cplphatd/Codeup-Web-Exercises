@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>jQuery FAQ Exercise</title>
+        <style>
+            .invisible {
+                display: none;
+            }
+            .question {
+                font-weight: bold;
+                font-size: 1.25em;
+            }
+        </style>
+    </head>
+    <body>
+        <dl>
+            <dt class="question" id="dtOne">Who is the director of the National Park Service?</dt>
+            <dd class="invisible" id="ddOne">Jonathan B. Jarvis</dd>
+            <dt class="question" id="dtTwo">What government agency oversees the National Park Service?</dt>
+            <dd class="invisible" id="ddTwo">The Department of the Interior</dd>
+            <dt class="question" id="dtThree">How many employees are in the National Park Service?</dt>
+            <dd class="invisible" id="ddThree">Approximately 22,000</dd>
+            <dt class="question" id="dtFour">How old is the National Park Service?</dt>
+            <dd class="invisible" id="ddFour">The National Park Service was created in 1916</dd>
+            <dt class="question" id="dtFive">How many areas are in the National Park System?</dt>
+            <dd class="invisible" id="ddFive">413 areas covering over 84 million acres</dd>
+            <dt class="question" id="dtSix">How many people visit national parks?</dt>
+            <dd class="invisible" id="ddSix">In 2015, there were 307,247,252 visitors</dd>
+            <dt class="question" id="dtSeven">What is the National Park Service budget?</dt>
+            <dd class="invisible" id="ddSeven">In 2015, the requested budget was $3.65 billion</dd>
+            <dt class="question" id="dtEight">What is the largest national park?</dt>
+            <dd class="invisible" id="ddEight">Wrangell-St. Elias National Park and Preserve, AK</dd>
+            <dt class="question" id="dtNine">What is the smallest national park?</dt>
+            <dd class="invisible" id="ddNine">Thaddeus Kosciuszko National Memorial, PA</dd>
+            <dt class="question" id="dtTen">What is the most visited national park?</dt>
+            <dd class="invisible" id="ddTen">The most visited national park in 2015 was Great Smoky Mountains National Park</dd>
+        </dl>
+        <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+                crossorigin="anonymous"></script>
+        <script>
+            //There is probably a better way to do this
+            var toggleDDOne = function () {
+                $("#ddOne").toggleClass("invisible");
+            };
+            var toggleDDTwo = function () {
+                $("#ddTwo").toggleClass("invisible");
+            };
+            var toggleDDThree = function () {
+                $("#ddThree").toggleClass("invisible");
+            };
+            var toggleDDFour = function () {
+                $("#ddFour").toggleClass("invisible");
+            };
+            var toggleDDFive = function () {
+                $("#ddFive").toggleClass("invisible");
+            };
+            var toggleDDSix = function () {
+                $("#ddSix").toggleClass("invisible");
+            };
+            var toggleDDSeven = function () {
+                $("#ddSeven").toggleClass("invisible");
+            };
+            var toggleDDEight = function () {
+                $("#ddEight").toggleClass("invisible");
+            };
+            var toggleDDNine = function () {
+                $("#ddNine").toggleClass("invisible");
+            };
+            var toggleDDTen = function () {
+                $("#ddTen").toggleClass("invisible");
+            };
+
+            $(document).ready(function() {
+                $("#dtOne").click(toggleDDOne);
+                $("#dtTwo").click(toggleDDTwo);
+                $("#dtThree").click(toggleDDThree);
+                $("#dtFour").click(toggleDDFour);
+                $("#dtFive").click(toggleDDFive);
+                $("#dtSix").click(toggleDDSix);
+                $("#dtSeven").click(toggleDDSeven);
+                $("#dtEight").click(toggleDDEight);
+                $("#dtNine").click(toggleDDNine);
+                $("#dtTen").click(toggleDDTen);
+            })
+        </script>
+    </body>
+</html>
