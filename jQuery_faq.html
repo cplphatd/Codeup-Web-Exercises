@@ -14,75 +14,93 @@
         </style>
     </head>
     <body>
-        <dl>
-            <dt class="question" id="dtOne">Who is the director of the National Park Service?</dt>
-            <dd class="invisible" id="ddOne">Jonathan B. Jarvis</dd>
-            <dt class="question" id="dtTwo">What government agency oversees the National Park Service?</dt>
-            <dd class="invisible" id="ddTwo">The Department of the Interior</dd>
-            <dt class="question" id="dtThree">How many employees are in the National Park Service?</dt>
-            <dd class="invisible" id="ddThree">Approximately 22,000</dd>
-            <dt class="question" id="dtFour">How old is the National Park Service?</dt>
-            <dd class="invisible" id="ddFour">The National Park Service was created in 1916</dd>
-            <dt class="question" id="dtFive">How many areas are in the National Park System?</dt>
-            <dd class="invisible" id="ddFive">413 areas covering over 84 million acres</dd>
-            <dt class="question" id="dtSix">How many people visit national parks?</dt>
-            <dd class="invisible" id="ddSix">In 2015, there were 307,247,252 visitors</dd>
-            <dt class="question" id="dtSeven">What is the National Park Service budget?</dt>
-            <dd class="invisible" id="ddSeven">In 2015, the requested budget was $3.65 billion</dd>
-            <dt class="question" id="dtEight">What is the largest national park?</dt>
-            <dd class="invisible" id="ddEight">Wrangell-St. Elias National Park and Preserve, AK</dd>
-            <dt class="question" id="dtNine">What is the smallest national park?</dt>
-            <dd class="invisible" id="ddNine">Thaddeus Kosciuszko National Memorial, PA</dd>
-            <dt class="question" id="dtTen">What is the most visited national park?</dt>
-            <dd class="invisible" id="ddTen">The most visited national park in 2015 was Great Smoky Mountains National Park</dd>
+        <h1>Frequently Asked Questions about the National Park Service</h1>
+        <dl class="faq">
+            <dt class="question">Who is the director of the National Park Service?</dt>
+            <dd class="invisible">Jonathan B. Jarvis</dd>
+            <dt class="question">What government agency oversees the National Park Service?</dt>
+            <dd class="invisible">The Department of the Interior</dd>
+            <dt class="question">How many employees are in the National Park Service?</dt>
+            <dd class="invisible">Approximately 22,000</dd>
+            <dt class="question">How old is the National Park Service?</dt>
+            <dd class="invisible">The National Park Service was created in 1916</dd>
+            <dt class="question">How many areas are in the National Park System?</dt>
+            <dd class="invisible">413 areas covering over 84 million acres</dd>
+            <dt class="question">How many people visit national parks?</dt>
+            <dd class="invisible">In 2015, there were 307,247,252 visitors</dd>
+            <dt class="question">What is the National Park Service budget?</dt>
+            <dd class="invisible">In 2015, the requested budget was $3.65 billion</dd>
+            <dt class="question">What is the largest national park?</dt>
+            <dd class="invisible">Wrangell-St. Elias National Park and Preserve, AK</dd>
+            <dt class="question">What is the smallest national park?</dt>
+            <dd class="invisible">Thaddeus Kosciuszko National Memorial, PA</dd>
+            <dt class="question">What is the most visited national park?</dt>
+            <dd class="invisible">The most visited national park in 2015 was Great Smoky Mountains National Park</dd>
         </dl>
+        <h1>Facts about national parks:</h1>
+        <h3>Grand Canyon National Park</h3>
+            <ul>
+                <li>The Grand Canyon is 277 miles in length</li>
+                <li>At its widest point, the Grand Canyon is 18 miles wide</li>
+                <li>The Grand Canyon is about 6000 feet deep</li>
+                <li>The Grand Canyon become a national park in 1919</li>
+            </ul>
+        <h3>Olympic National Park</h3>
+            <ul>
+                <li>Olympic National Park covers 922,651 acres</li>
+                <li>Olympic National Park containes 73 miles of wilderness coast</li>
+                <li>There are over 60 named glaciers in Olympic National Park</li>
+                <li>There are 22 endangered species that live in Olympic National Park</li>
+            </ul>
+        <h3>Yosemite National Park</h3>
+            <ul>
+                <li>Yosemite Falls is the tallest waterfall in North America at a height of 2,425 feet</li>
+                <li>Yosemite National Park was designated a UNESCO World Heritage Site in 1984</li>
+                <li>About 3.5 million people visit Yosemite National Park each year</li>
+                <li>There are 500 giant sequioas in Yosemite National Park</li>
+            </ul>
+
         <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
                 crossorigin="anonymous"></script>
-        <script>
-            //There is probably a better way to do this
-            var toggleDDOne = function () {
-                $("#ddOne").toggleClass("invisible");
-            };
-            var toggleDDTwo = function () {
-                $("#ddTwo").toggleClass("invisible");
-            };
-            var toggleDDThree = function () {
-                $("#ddThree").toggleClass("invisible");
-            };
-            var toggleDDFour = function () {
-                $("#ddFour").toggleClass("invisible");
-            };
-            var toggleDDFive = function () {
-                $("#ddFive").toggleClass("invisible");
-            };
-            var toggleDDSix = function () {
-                $("#ddSix").toggleClass("invisible");
-            };
-            var toggleDDSeven = function () {
-                $("#ddSeven").toggleClass("invisible");
-            };
-            var toggleDDEight = function () {
-                $("#ddEight").toggleClass("invisible");
-            };
-            var toggleDDNine = function () {
-                $("#ddNine").toggleClass("invisible");
-            };
-            var toggleDDTen = function () {
-                $("#ddTen").toggleClass("invisible");
-            };
 
-            $(document).ready(function() {
-                $("#dtOne").click(toggleDDOne);
-                $("#dtTwo").click(toggleDDTwo);
-                $("#dtThree").click(toggleDDThree);
-                $("#dtFour").click(toggleDDFour);
-                $("#dtFive").click(toggleDDFive);
-                $("#dtSix").click(toggleDDSix);
-                $("#dtSeven").click(toggleDDSeven);
-                $("#dtEight").click(toggleDDEight);
-                $("#dtNine").click(toggleDDNine);
-                $("#dtTen").click(toggleDDTen);
-            })
+        <script>
+            $(document).ready(function () {
+
+                //Targets each <dt> within the <dl> and adds a toggle answer click event
+                $(".faq dt").each(function () {
+
+                    var toggleAnswer = function () {
+                        $(this).next("dd").toggleClass("invisible");
+                    };
+
+                    $(this).click(toggleAnswer);
+                });
+
+                //Adds bold to the first <li> of each <ul>
+                $("ul").each(function () {
+                    $(this).children().first().css("font-weight", "bold");
+                });
+
+                //Adds .invisible on the parent <ul> of any <li> that is clicked
+                $("li").each(function(){
+
+                    var hideParent = function () {
+                        $(this).parent().addClass("invisible");
+                    };
+
+                    $(this).click(hideParent);
+                });
+
+                //Removes .invisible from the <ul> when <h3> clicked
+                $("h3").each(function () {
+
+                    var showList = function () {
+                        $(this).next("ul").removeClass("invisible");
+                    };
+
+                    $(this).click(showList);
+                });
+            });
         </script>
     </body>
 </html>
