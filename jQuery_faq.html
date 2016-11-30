@@ -4,8 +4,10 @@
         <meta charset="UTF-8">
         <title>jQuery FAQ Exercise</title>
         <style>
-            .invisible {
-                display: none;
+            @import url('https://fonts.googleapis.com/css?family=Frank+Ruhl+Libre');
+            body {
+                background-image: url(img/tree_bark.png);
+                font-family: 'Frank Ruhl Libre', sans-serif;
             }
             .question {
                 font-weight: bold;
@@ -14,28 +16,28 @@
         </style>
     </head>
     <body>
-        <h1>Frequently Asked Questions about the National Park Service</h1>
+        <h1>Frequently Asked Questions about the National Park Service:</h1>
         <dl class="faq">
             <dt class="question">Who is the director of the National Park Service?</dt>
-            <dd class="invisible">Jonathan B. Jarvis</dd>
+            <dd>Jonathan B. Jarvis</dd>
             <dt class="question">What government agency oversees the National Park Service?</dt>
-            <dd class="invisible">The Department of the Interior</dd>
+            <dd>The Department of the Interior</dd>
             <dt class="question">How many employees are in the National Park Service?</dt>
-            <dd class="invisible">Approximately 22,000</dd>
+            <dd>Approximately 22,000</dd>
             <dt class="question">How old is the National Park Service?</dt>
-            <dd class="invisible">The National Park Service was created in 1916</dd>
+            <dd>The National Park Service was created in 1916</dd>
             <dt class="question">How many areas are in the National Park System?</dt>
-            <dd class="invisible">413 areas covering over 84 million acres</dd>
+            <dd>413 areas covering over 84 million acres</dd>
             <dt class="question">How many people visit national parks?</dt>
-            <dd class="invisible">In 2015, there were 307,247,252 visitors</dd>
+            <dd>In 2015, there were 307,247,252 visitors</dd>
             <dt class="question">What is the National Park Service budget?</dt>
-            <dd class="invisible">In 2015, the requested budget was $3.65 billion</dd>
+            <dd>In 2015, the requested budget was $3.65 billion</dd>
             <dt class="question">What is the largest national park?</dt>
-            <dd class="invisible">Wrangell-St. Elias National Park and Preserve, AK</dd>
+            <dd>Wrangell-St. Elias National Park and Preserve, AK</dd>
             <dt class="question">What is the smallest national park?</dt>
-            <dd class="invisible">Thaddeus Kosciuszko National Memorial, PA</dd>
+            <dd>Thaddeus Kosciuszko National Memorial, PA</dd class="invisible">
             <dt class="question">What is the most visited national park?</dt>
-            <dd class="invisible">The most visited national park in 2015 was Great Smoky Mountains National Park</dd>
+            <dd>The most visited national park in 2015 was Great Smoky Mountains National Park</dd>
         </dl>
         <h1>Facts about national parks:</h1>
         <h3>Grand Canyon National Park</h3>
@@ -59,7 +61,6 @@
                 <li>About 3.5 million people visit Yosemite National Park each year</li>
                 <li>There are 500 giant sequioas in Yosemite National Park</li>
             </ul>
-
         <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
                 crossorigin="anonymous"></script>
 
@@ -69,8 +70,10 @@
                 //Targets each <dt> within the <dl> and adds a toggle answer click event
                 $(".faq dt").each(function () {
 
+                    $(this).next("dd").hide();
+
                     var toggleAnswer = function () {
-                        $(this).next("dd").toggleClass("invisible");
+                        $(this).next("dd").slideToggle();
                     };
 
                     $(this).click(toggleAnswer);
@@ -81,24 +84,14 @@
                     $(this).children().first().css("font-weight", "bold");
                 });
 
-                //Adds .invisible on the parent <ul> of any <li> that is clicked
-                $("li").each(function(){
-
-                    var hideParent = function () {
-                        $(this).parent().addClass("invisible");
-                    };
-
-                    $(this).click(hideParent);
-                });
-
-                //Removes .invisible from the <ul> when <h3> clicked
+                //Toggles visibility of <ul> when <h3> is clicked using fadeIn and fadeOut
                 $("h3").each(function () {
 
-                    var showList = function () {
-                        $(this).next("ul").removeClass("invisible");
+                    var toggleList = function () {
+                        $(this).next("ul").slideToggle();
                     };
 
-                    $(this).click(showList);
+                    $(this).click(toggleList);
                 });
             });
         </script>
