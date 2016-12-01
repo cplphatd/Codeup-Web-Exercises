@@ -1,0 +1,13 @@
+body {
+    background-image: url("../img/soft_circle_scales.png");
+}
+.newInfo {
+    width: 30em;
+}
+#newPost {
+    width: 35em;
+    height: 10em;
+}
+#title {
+    font-size: 5em;
+}
