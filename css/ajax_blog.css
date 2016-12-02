@@ -1,12 +1,19 @@
 body {
     background-image: url("../img/soft_circle_scales.png");
 }
-.newInfo {
-    width: 30em;
+.spacer {
+    height: 5em;
 }
-#newPost {
-    width: 35em;
-    height: 10em;
+#addNew {
+    margin-top: 1em;
+}
+#navbar {
+    color: ghostwhite;
+    text-align: right;
+    padding-right: 1em;
+}
+#removeLast {
+    margin-top: 1em;
 }
 #title {
     font-size: 5em;

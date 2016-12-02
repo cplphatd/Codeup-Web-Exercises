@@ -10,28 +10,45 @@
         <link rel="stylesheet" href="css/ajax_blog.css">
     </head>
     <body>
-        <div class="container">
-            <div id="header" class="blog-header col-sm-12 col-md-12 col-lg-12">
-                <h1 id="title" class="blog-title">My First Blog</h1>
-                <p class="lead blog-title">A blog populated by an AJAX request</p>
-            </div>
-            <div id="posts" class="blog-main col-sm-12 col-md-6 col-lg-6"></div>
-            <label>
-                Title:  <input class="newInfo">
-            </label>
-            <br>
-            <label>
-                Date:  <input>
-            </label>
-            <br>
-            <label>
-                Blog: <textarea id="newPost"></textarea>
-            </label>
-            <br>
-            <label>
-                Tags: <input class="newInfo">
-            </label>
-        </div>
+         <div id="navbar" class="navbar navbar-fixed-top navbar-inverse">
+             <h1>Navbar</h1>
+         </div>
+         <div class="spacer"></div>
+         <div id="blogContainer" class="container">
+             <div id="header" class="blog-header col-sm-12 col-md-12 col-lg-12">
+                 <h1 id="title" class="blog-title">My First Blog</h1>
+                 <p class="lead blog-title">A blog populated by an AJAX request</p>
+             </div>
+             <div id="posts" class="blog-main col-sm-8 col-md-6 col-lg-6"></div>
+             <div id="sidebar" class="sidebar col-sm-4 col-md-2 col-lg-2">
+                 <h3>About</h3>
+                 <div class="sidebar module">
+                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac sodales sapien, et facilisis urna. Ut ac elementum neque, sed ultricies quam. Donec sed venenatis lectus. Donec nec porttitor sapien. Integer semper, ex sed hendrerit tincidunt, risus orci tristique lorem, nec tempus dolor libero at purus. Donec pulvinar orci leo, quis congue ex accumsan a. Suspendisse gravida justo non ante ultrices placerat. Duis porta semper dapibus. Duis mollis imperdiet risus id facilisis.
+                 </div>
+             </div>
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                 <label for="postTitle">Title: </label>
+                 <input id="postTitle" type="text" class="form-control">
+             </div>
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                 <label for="postDate">Date: </label>
+                 <input id="postDate" type="text" class="form-control">
+             </div>
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                 <label for="postbody">Post: </label>
+                 <textarea id="postBody" type="text" class="form-control" rows="10"></textarea>
+             </div>
+             <div class="col-sm-12 col-md-8 col-lg-8">
+                 <label for="postTags">Tags (separate with commas): </label>
+                 <input id="postTags" type="text" class="form-control">
+             </div>
+             <div class="col-sm-12 col-md-12 col-lg-12">
+                 <button id="addNew" class="btn">Add Post</button>
+             </div>
+             <div class="col-sm-12 col-md-12 col-lg-12">
+                 <button id="removeLast" class="btn">Remove Last</button>
+             </div>
+         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
                 integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
