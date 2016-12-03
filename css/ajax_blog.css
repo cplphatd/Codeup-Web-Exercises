@@ -1,6 +1,12 @@
 body {
     background-image: url("../img/soft_circle_scales.png");
 }
+.nav-btn {
+    padding-left: 5px;
+    border-left: solid;
+    border-color: white;
+    border-width: 1px;
+}
 .spacer {
     height: 5em;
 }
@@ -10,7 +16,7 @@ body {
 #navbar {
     color: ghostwhite;
     text-align: right;
-    padding-right: 1em;
+    padding-right: 5px;
 }
 #removeLast {
     margin-top: 1em;

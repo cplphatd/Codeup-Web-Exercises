@@ -11,7 +11,11 @@
     </head>
     <body>
          <div id="navbar" class="navbar navbar-fixed-top navbar-inverse">
-             <h1>Navbar</h1>
+             <h2>
+                 <a class="blog-nav-item nav-btn">Link 1</a>
+                 <a class="blog-nav-item nav-btn">Link 2</a>
+                 <a class="blog-nav-item nav-btn">Link 3</a>
+             </h2>
          </div>
          <div class="spacer"></div>
          <div id="blogContainer" class="container">
@@ -19,11 +23,27 @@
                  <h1 id="title" class="blog-title">My First Blog</h1>
                  <p class="lead blog-title">A blog populated by an AJAX request</p>
              </div>
-             <div id="posts" class="blog-main col-sm-8 col-md-6 col-lg-6"></div>
+             <div id="posts" class="blog-main col-sm-8 col-md-10 col-lg-10"></div>
              <div id="sidebar" class="sidebar col-sm-4 col-md-2 col-lg-2">
                  <h3>About</h3>
-                 <div class="sidebar module">
+                 <div class="sidebar-module sidebar-module-inset">
                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac sodales sapien, et facilisis urna. Ut ac elementum neque, sed ultricies quam. Donec sed venenatis lectus. Donec nec porttitor sapien. Integer semper, ex sed hendrerit tincidunt, risus orci tristique lorem, nec tempus dolor libero at purus. Donec pulvinar orci leo, quis congue ex accumsan a. Suspendisse gravida justo non ante ultrices placerat. Duis porta semper dapibus. Duis mollis imperdiet risus id facilisis.
+                 </div>
+                 <h3>Previous posts: </h3>
+                 <div class="sidebar-module">
+                     <a>Month 1</a>
+                     <br>
+                     <a>Month 2</a>
+                     <br>
+                     <a>Month 3</a>
+                 </div>
+                 <h3>Social Media: </h3>
+                 <div class="sidebar-module">
+                     <a>Facebook</a>
+                     <br>
+                     <a>LinkedIn</a>
+                     <br>
+                     <a>GitHub</a>
                  </div>
              </div>
              <div class="col-sm-12 col-md-8 col-lg-8">
@@ -43,10 +63,10 @@
                  <input id="postTags" type="text" class="form-control">
              </div>
              <div class="col-sm-12 col-md-12 col-lg-12">
-                 <button id="addNew" class="btn">Add Post</button>
+                 <button id="addNew" class="btn btn-success">Add New Post</button>
              </div>
              <div class="col-sm-12 col-md-12 col-lg-12">
-                 <button id="removeLast" class="btn">Remove Last</button>
+                 <button id="removeLast" class="btn btn-danger">Remove Last Post</button>
              </div>
          </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
