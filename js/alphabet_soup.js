@@ -8,45 +8,55 @@
     // +"ehllo dlorw". So make sure your function separates and alphabetizes
     // +each word separately.
 
-    var myString = "Hello World";
-    var newArray = [];      //will hold split string
+    //User's string (will change to prompt)
+    var userString = prompt("Please enter your favorite phrase. (You will get a console message with each word sorted alphabetically)");
 
-    //splits string into separate words
-    function splitString (string) {
-        var array;
-        array = string.split(" ");
-        return array;
-    }
+    //Array to hold individual words of string
+    var splitIntoWordsArray = [];
 
-    newArray = splitString(myString);  //stores split words into new array
-    console.log("state after splitting string: " + newArray);      //verify results
+    //Splits string into words
+    var splitIntoWords = function (string) {
+        splitIntoWordsArray = string.split(" ");
+    };
 
-    var wordsSplitIntoLettersArray = [];      //will hold the split letters
+    splitIntoWords(userString);
 
-    //splits each word into letters and pushes onto wordsSplitIntoLettersArray
-    function splitIntoLetters (array) {
+    //Array to hold individual letters from array
+    var resultsArray = [];
+
+    //Sorts the individual letters of the array alphabetically
+    var sortLetters = function (splitWord) {
+        return splitWord.sort();
+    };
+
+    //Joins the letters to create the sorted word
+    var joinLetters = function (sortedLetters) {
+        return sortedLetters.join("");
+    };
+
+    //Splits each word into letters, calls sort function, calls join function, and pushes onto wordsSplitIntoLettersArray
+    var createSortedWord = function (wordsArray) {
         var wordSplitIntoLetters;
-        array.forEach(function (word) {
-            wordSplitIntoLetters = word.split("");
-            wordsSplitIntoLettersArray.push(wordSplitIntoLetters);
-        })
-    }
-
-    splitIntoLetters(newArray);                   //split the words into letters
-    console.log("state after split into letters: " + wordsSplitIntoLettersArray);        //verify results
-
-    var sortedLettersArray = [];                  //will hold the sorted letters
-
-    //sorts each array of letters
-    function sortLetters (array) {
         var sortedWord;
-        array.forEach(function (splitWord) {
-            sortedWord = splitWord.reverse();
-            sortedLettersArray.push(sortedWord);
-        })
-    }
+        var joinedWord;
+        wordsArray.forEach(function (word) {
+            wordSplitIntoLetters = word.split("");
+            sortedWord = sortLetters(wordSplitIntoLetters);
+            joinedWord = joinLetters(sortedWord);
+            resultsArray.push(joinedWord);
+        });
+    };
 
-    sortLetters(wordsSplitIntoLettersArray);    //sort the letters
-    console.log("state after sort: " + sortedLettersArray);    //verify results
+    createSortedWord(splitIntoWordsArray);
+
+    //Holds the sorted letters
+    var showResults = function (results) {
+        console.log("Your results: ");
+        results.forEach(function (sortedWord) {
+            console.log(sortedWord);
+        });
+    };
+
+    showResults (resultsArray);
 
 })();

@@ -98,12 +98,12 @@
         //Populates blog initially
         writeBlog(posts);
 
-        //Event handler to remove last blog that is stored in JSON
+        //Event handler to remove last blog that is stored in blogArray
         $("#removeLast").click(function () {
             removeLastPost(posts);
         });
 
-        //Event handler to add new post from user
+        //Event handler to add new post from user and pushes to blogArray
         $("#addNew").click(function () {
             addPost(posts);
         });
