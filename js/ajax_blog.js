@@ -4,10 +4,10 @@
 "use strict";
 (function () {
 
-        //Array to hold blog contents
+        //Array to hold blog contents as a string to write as html
         var blogArray = [];
 
-        //Assignment of returned object to posts
+        //Will hold the object returned from the ajax .get request
         var posts;
 
         //ajax request to retrieve posts (IIFE)
@@ -24,22 +24,38 @@
                         + "<p class='blog-post-meta'>Date: " + object.date + "</p>"
                         + "<p>" + object.content + "</p>"
                         + "<p class='blog-post-meta'>Tags: " + object.categories.join(", ") + "</p>"
-                        + "</div><hr>";
+                        + "</div>";
                 });
                 $("#posts").html(blogArray);
             });
+
+            posts.fail(function () {
+                console.log("Request failed")
+            });
+
+            posts.always(function () {
+                console.log("Process complete")
+            });
         };
 
-        //Function that generates the blog with the exception of the last indexed object
+        //Function that removes the last post
         var removeLastPost = function (blogContents) {
             blogContents.done(function (array) {
                 blogArray = [];
                 array.pop();
                 $(".blog-post").last().remove();
             });
+
+            posts.fail(function () {
+                console.log("Request failed")
+            });
+
+            posts.always(function () {
+                console.log("Process complete")
+            });
         };
 
-        //Object to hold new post keys
+        //Array of objects to hold new posts
         var newPost = [{}];
 
         //Function to get new post object and add to array of json objects
@@ -52,15 +68,22 @@
                 newPost.categories = [];
                 newPost.categories = $("#postTags").val().split(",");
                 array.push(newPost);
-                console.log(array);
                 clearAllInputs();
                 blogArray += "<div class='blog-post'>"
                     + "<h2 class='blog-post-title'>" + newPost.title + "</h2>"
                     + "<p class='blog-post-meta'>Date: " + newPost.date + "</p>"
                     + "<p>" + newPost.content + "</p>"
                     + "<p class='blog-post-meta'>Tags: " + newPost.categories.join(", ") + "</p>"
-                    + "</div><hr>";
+                    + "</div>";
                 $("#posts").append(blogArray);
+            });
+
+            posts.fail(function () {
+                console.log("Request failed")
+            });
+
+            posts.always(function () {
+                console.log("Process complete")
             });
         };
 
