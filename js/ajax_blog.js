@@ -41,49 +41,32 @@
         //Function that removes the last post
         var removeLastPost = function (blogContents) {
             blogContents.done(function (array) {
-                blogArray = [];
                 array.pop();
                 $(".blog-post").last().remove();
-            });
-
-            posts.fail(function () {
-                console.log("Request failed")
-            });
-
-            posts.always(function () {
-                console.log("Process complete")
             });
         };
 
         //Array of objects to hold new posts
-        var newPost = [{}];
+        var newPosts = [{}];
 
         //Function to get new post object and add to array of json objects
         var addPost = function (blogContents) {
             blogContents.done(function (array) {
                 blogArray = [];
-                newPost.title = $("#postTitle").val();
-                newPost.date = $("#postDate").val();
-                newPost.content = $("#postBody").val();
-                newPost.categories = [];
-                newPost.categories = $("#postTags").val().split(",");
-                array.push(newPost);
+                newPosts.title = $("#postTitle").val();
+                newPosts.date = $("#postDate").val();
+                newPosts.content = $("#postBody").val();
+                newPosts.categories = [];
+                newPosts.categories = $("#postTags").val().split(",");
+                array.push(newPosts);
                 clearAllInputs();
                 blogArray += "<div class='blog-post'>"
-                    + "<h2 class='blog-post-title'>" + newPost.title + "</h2>"
-                    + "<p class='blog-post-meta'>Date: " + newPost.date + "</p>"
-                    + "<p>" + newPost.content + "</p>"
-                    + "<p class='blog-post-meta'>Tags: " + newPost.categories.join(", ") + "</p>"
+                    + "<h2 class='blog-post-title'>" + newPosts.title + "</h2>"
+                    + "<p class='blog-post-meta'>Date: " + newPosts.date + "</p>"
+                    + "<p>" + newPosts.content + "</p>"
+                    + "<p class='blog-post-meta'>Tags: " + newPosts.categories.join(", ") + "</p>"
                     + "</div>";
                 $("#posts").append(blogArray);
-            });
-
-            posts.fail(function () {
-                console.log("Request failed")
-            });
-
-            posts.always(function () {
-                console.log("Process complete")
             });
         };
 

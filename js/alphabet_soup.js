@@ -34,14 +34,14 @@
         return sortedLetters.join("");
     };
 
-    //Splits each word into letters, calls sort function, calls join function, and pushes onto wordsSplitIntoLettersArray
+    //Splits each word into letters, calls sort function, calls join function, and pushes onto resultsArray
     var createSortedWord = function (wordsArray) {
-        var wordSplitIntoLetters;
+        var splitWord;
         var sortedWord;
         var joinedWord;
         wordsArray.forEach(function (word) {
-            wordSplitIntoLetters = word.split("");
-            sortedWord = sortLetters(wordSplitIntoLetters);
+            splitWord = word.split("");
+            sortedWord = sortLetters(splitWord);
             joinedWord = joinLetters(sortedWord);
             resultsArray.push(joinedWord);
         });
