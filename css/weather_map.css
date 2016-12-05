@@ -1,0 +1,11 @@
+.box {
+    height: 20em;
+    width: 20em;
+    border: solid;
+    border-color: black;
+    border-width: 1px;
+    margin-right: 1em;
+    float: left;
+    text-align: center;
+    background-color: lightgray;
+}
