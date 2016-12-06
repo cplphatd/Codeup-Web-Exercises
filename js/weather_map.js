@@ -10,18 +10,19 @@
     //Array that holds string of html to post to page
     var pageContents = [];
 
-    //Sends ajax .get request and returns object of info
-    var getWeatherInfo = function () {
-        return $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
-            APPID: "e8f4c94a52cb7419ca9257f022da00fc",
-            q: "San Antonio",
-            units: "imperial",
-            cnt: "3"
-        });
+    //Set map options with user lat/long from user inputted address
+    var userLat;
+    var userLng;
+    var mapOptions = {
+        zoom: 14,
+        center: {
+            lat: userLat,
+            lng: userLng
+        }
     };
 
-    //Call getWeatherInfo by assigning to weatherInfo (any time weatherInfo is passed into a function, an ajax request is sent)
-    weatherRequest = getWeatherInfo();
+    //Declare and initialize geocoder
+    var geocoder = new  google.maps.Geocoder();
 
     //Gets current time and stores in variable
     var currentTime = new Date().getTime();
@@ -58,9 +59,23 @@
     //Call date function
     generateThreeDates(currentTime);
 
+    //Sends ajax .get request and returns object of info
+    var getWeatherInfo = function () {
+        console.log("lat@getWeatherInfo: " + userLat);
+        console.log("lng@getWeatherInfo: " + userLng);
+        return $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+            APPID: "e8f4c94a52cb7419ca9257f022da00fc",
+            lat: userLat,
+            lon: userLng,
+            units: "imperial",
+            cnt: "3"
+        });
+    };
+
     //Write current weather conditions to html
     var postWeather = function (request) {
         request.done(function (weatherInfo) {
+            pageContents = [];
             $("#location").html("<h2>" + weatherInfo.city.name + "'s Three Day Forecast</h2>");
             console.log(weatherInfo);
             for (var i = 0; i <= threeDayArray.length - 1; i += 1) {
@@ -86,18 +101,35 @@
         });
     };
 
-    //Set map options
-    var mapOptions = {
-        zoom: 14,
-        center: {
-            lat: 30.317077,
-            lng: -97.719509
-        }
+    //Uses geocoder to center map and extract lat/long from address
+    var getLatLng = function () {
+        var address = $("#userLocation").val();
+        geocoder.geocode({"address": address}, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+
+                //Render the map
+                var renderMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+                renderMap.setCenter(results[0].geometry.location);
+
+                //Assign lat/lng to user variables
+                userLat = results[0].geometry.location.lat();
+                userLng = results[0].geometry.location.lng();
+
+                //Call getWeatherInfo by assigning to weatherInfo (any time weatherInfo is passed into a function, an ajax request is sent)
+                weatherRequest = getWeatherInfo();
+
+                //Call postWeather to populate page
+                postWeather(weatherRequest);
+            } else {
+                alert("Geocoding was not successful - STATUS: " + status);
+            }
+        });
     };
 
-    //Render the map
-    var renderMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+    //Create click event to grab user address and pass into getLatLng
+    $("#search").click(function () {
+        getLatLng();
+    });
 
-    //Call postWeather to populate page
-    postWeather(weatherRequest);
+
 })();

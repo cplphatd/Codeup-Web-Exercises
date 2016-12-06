@@ -10,11 +10,16 @@
     text-align: center;
     background-color: lightgray;
 }
+.hidden {
+    display: none;
+}
 #location {
     text-decoration: underline;
 }
 #map-canvas {
     width: 71em;
     height: 481px;
-    border: 1px solid black;
+}
+#userLocation {
+    width: 40em;
 }
