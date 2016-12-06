@@ -1,14 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
+body {
+    background-image: url("../img/weather.png");
+    color: #2D3142;
+    font-family: 'Fredericka the Great', cursive;
+}
 .box {
-    height: 23em;
-    width: 23em;
+    height: 20em;
+    width: 20em;
     border: solid;
     border-color: black;
     border-width: 1px;
+    margin-left: 1em;
     margin-right: 1em;
     margin-bottom: 1em;
-    float: left;
+    display: inline-block;
+    background-color: #D8D5DB;
+}
+.center {
     text-align: center;
-    background-color: lightgray;
 }
 .hidden {
     display: none;
@@ -17,9 +26,14 @@
     text-decoration: underline;
 }
 #map-canvas {
-    width: 71em;
+    width: 910px;
     height: 481px;
+    margin-right: auto;
+    margin-left: auto;
 }
 #userLocation {
     width: 40em;
+}
+#location {
+    margin-top: 7em;
 }

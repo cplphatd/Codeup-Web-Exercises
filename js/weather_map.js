@@ -32,22 +32,26 @@
     //Takes a starting time and creates three days
     var generateThreeDates = function (startTime) {
         var date;
+        var convertedDate;
         for(var i = 0; i <= 2; i += 1) {
             switch (i) {
                 case 0 :
                     date = new Date(startTime);
-                    date.toString();
-                    threeDayArray.push(date);
+                    convertedDate = moment(date).format("dddd DD MMM YYYY");
+                    convertedDate.toString();
+                    threeDayArray.push(convertedDate);
                     break;
                 case 1 :
-                    date = new Date(startTime + 8.64e+7);
-                    date.toString();
-                    threeDayArray.push(date);
+                    date = new Date(startTime);
+                    convertedDate = moment(date).add(1, "days").format("dddd DD MMM YYYY");
+                    convertedDate.toString();
+                    threeDayArray.push(convertedDate);
                     break;
                 case 2 :
-                    date = new Date(startTime + (8.64e+7 * 2));
-                    date.toString();
-                    threeDayArray.push(date);
+                    date = new Date(startTime);
+                    convertedDate = moment(date).add(2, "days").format("dddd DD MMM YYYY");
+                    convertedDate.toString();
+                    threeDayArray.push(convertedDate);
                     break;
                 default:
                     console.log("error");
@@ -56,6 +60,11 @@
     };
 
     generateThreeDates(currentTime);
+
+    //Clears address field
+    var clearAddress = function () {
+        $("#userLocation").val("");
+    };
 
     //Sends ajax .get request and returns object of info
     var getWeatherInfo = function () {
@@ -88,7 +97,7 @@
             $("#location").html("<h2>" + weatherInfo.city.name + "'s Three Day Forecast</h2>");
             for (var i = 0; i <= threeDayArray.length - 1; i += 1) {
                 pageContents +=
-                    "<div class='box'><h5>" + threeDayArray[i] + "</h5>"
+                    "<div class='box'><h4>" + threeDayArray[i] + "</h4>"
                     + "<h2>" + Math.round(weatherInfo.list[i].temp.max) + "/" + Math.round(weatherInfo.list[i].temp.min) + "°</h2>"
                     + "<div><img src='http://openweathermap.org/img/w/" + weatherInfo.list[i].weather[0].icon +".png'></div>"
                     + "<h4>" + weatherInfo.list[i].weather[0].main + ": " + weatherInfo.list[i].weather[0].description + "</h4>"
@@ -98,6 +107,7 @@
                     + "</div>";
             }
             $("#weather").html(pageContents);
+            clearAddress();
         });
 
         request.fail(function () {
