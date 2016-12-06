@@ -4,11 +4,9 @@
 "use strict";
 (function () {
 
-    //Holds weather info from ajax .get request (response)
-    var weatherRequest;
+    var weatherRequest;         //Holds weather info from ajax .get request (response)
 
-    //Array that holds string of html to post to page
-    var pageContents = [];
+    var pageContents = [];      //Array that holds string of html to post to page
 
     //Set map options with user lat/long from user inputted address
     var userLat;
@@ -21,14 +19,15 @@
         }
     };
 
+    var map;        //Will hold the map
+
     //Declare and initialize geocoder
     var geocoder = new  google.maps.Geocoder();
 
     //Gets current time and stores in variable
     var currentTime = new Date().getTime();
 
-    //Array that holds the three dates
-    var threeDayArray = [];
+    var threeDayArray = [];     //Array that holds the three dates
 
     //Takes a starting time and creates three days
     var generateThreeDates = function (startTime) {
@@ -56,13 +55,10 @@
         }
     };
 
-    //Call date function
     generateThreeDates(currentTime);
 
     //Sends ajax .get request and returns object of info
     var getWeatherInfo = function () {
-        console.log("lat@getWeatherInfo: " + userLat);
-        console.log("lng@getWeatherInfo: " + userLng);
         return $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
             APPID: "e8f4c94a52cb7419ca9257f022da00fc",
             lat: userLat,
@@ -72,12 +68,24 @@
         });
     };
 
+    //Generates marker at current position
+    var marker;     //Will hold the new marker
+    var generateMarker = function (lat, lng) {
+        marker = new google.maps.Marker ({
+            position: {
+                lat: lat,
+                lng: lng
+            },
+            map: map,
+            draggable: true
+        });
+    };
+
     //Write current weather conditions to html
     var postWeather = function (request) {
         request.done(function (weatherInfo) {
             pageContents = [];
             $("#location").html("<h2>" + weatherInfo.city.name + "'s Three Day Forecast</h2>");
-            console.log(weatherInfo);
             for (var i = 0; i <= threeDayArray.length - 1; i += 1) {
                 pageContents +=
                     "<div class='box'><h5>" + threeDayArray[i] + "</h5>"
@@ -108,12 +116,17 @@
             if (status == google.maps.GeocoderStatus.OK) {
 
                 //Render the map
-                var renderMap = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-                renderMap.setCenter(results[0].geometry.location);
+                map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+                map.setCenter(results[0].geometry.location);
 
                 //Assign lat/lng to user variables
                 userLat = results[0].geometry.location.lat();
                 userLng = results[0].geometry.location.lng();
+
+                generateMarker(userLat, userLng);
+
+                //Create drag event to grab coordinates from marker and pass into getLatLng
+                google.maps.event.addListener(marker, "dragend", getMarkerLocation);
 
                 //Call getWeatherInfo by assigning to weatherInfo (any time weatherInfo is passed into a function, an ajax request is sent)
                 weatherRequest = getWeatherInfo();
@@ -126,10 +139,17 @@
         });
     };
 
+    //Gets lat/long from marker and sends ajax request for new location
+    var getMarkerLocation = function (event) {
+        userLat = event.latLng.lat();
+        userLng = event.latLng.lng();
+        weatherRequest = getWeatherInfo();
+        postWeather(weatherRequest);
+    };
+
     //Create click event to grab user address and pass into getLatLng
     $("#search").click(function () {
         getLatLng();
     });
-
 
 })();
