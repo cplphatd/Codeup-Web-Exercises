@@ -11,11 +11,10 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="center"><h1>Weather Application</h1></div>
+            <div class="center"><h1>Tell me the weather at...</h1></div>
             <div class="col-sm-12 col-md-12 col-lg-12 center">
                 <label for="userLocation">
-                    Please enter the location
-                    <input id="userLocation" class="form-control">
+                    <input id="userLocation" class="form-control" type="text" placeholder="Please enter the location">
                 </label>
                 <button id="search" class="btn-primary">Search</button>
             </div>
@@ -30,7 +29,7 @@
                 crossorigin="anonymous"></script>
         <script src="http://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
                 crossorigin="anonymous"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8M1QXQxpkLXWJiS0WqEixJKdli_z2HtA"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8M1QXQxpkLXWJiS0WqEixJKdli_z2HtA&libraries=places"></script>
         <script src="js/weather_map.js"></script>
     </body>
 </html>

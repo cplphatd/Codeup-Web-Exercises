@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great');
 body {
     background-image: url("../img/weather.png");
-    color: #2D3142;
+    color: #474850;
     font-family: 'Fredericka the Great', cursive;
 }
 .box {
@@ -15,19 +15,48 @@ body {
     margin-bottom: 1em;
     display: inline-block;
     background-color: #D8D5DB;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 .center {
     text-align: center;
 }
+.cloudy {
+    background-image: url("../img/cloudy.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.extreme {
+    background-color: red;
+}
 .hidden {
     display: none;
+}
+.rainy {
+    background-image: url("../img/rainy.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.snowy {
+    background-image: url("../img/snow.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.sunny {
+    background-image: url("../img/sunny.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.stormy {
+    background-image: url("../img/thunderstorm.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 #location {
     text-decoration: underline;
 }
 #map-canvas {
     width: 910px;
-    height: 481px;
+    height: 20em;
     margin-right: auto;
     margin-left: auto;
 }
@@ -35,5 +64,5 @@ body {
     width: 40em;
 }
 #location {
-    margin-top: 7em;
+    margin-top: 3em;
 }

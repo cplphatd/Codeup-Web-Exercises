@@ -19,47 +19,10 @@
         }
     };
 
-    var map;        //Will hold the map
+    var map;    //Will hold the map
 
     //Declare and initialize geocoder
     var geocoder = new  google.maps.Geocoder();
-
-    //Gets current time and stores in variable
-    var currentTime = new Date().getTime();
-
-    var threeDayArray = [];     //Array that holds the three dates
-
-    //Takes a starting time and creates three days
-    var generateThreeDates = function (startTime) {
-        var date;
-        var convertedDate;
-        for(var i = 0; i <= 2; i += 1) {
-            switch (i) {
-                case 0 :
-                    date = new Date(startTime);
-                    convertedDate = moment(date).format("dddd DD MMM YYYY");
-                    convertedDate.toString();
-                    threeDayArray.push(convertedDate);
-                    break;
-                case 1 :
-                    date = new Date(startTime);
-                    convertedDate = moment(date).add(1, "days").format("dddd DD MMM YYYY");
-                    convertedDate.toString();
-                    threeDayArray.push(convertedDate);
-                    break;
-                case 2 :
-                    date = new Date(startTime);
-                    convertedDate = moment(date).add(2, "days").format("dddd DD MMM YYYY");
-                    convertedDate.toString();
-                    threeDayArray.push(convertedDate);
-                    break;
-                default:
-                    console.log("error");
-            }
-        }
-    };
-
-    generateThreeDates(currentTime);
 
     //Clears address field
     var clearAddress = function () {
@@ -90,14 +53,114 @@
         });
     };
 
+    //Change first child's background
+    var changeFirstChildBackground = function (weatherCode) {
+        switch (true) {
+            case (weatherCode >= 200 && weatherCode <= 299) :
+                $(".box:nth-child(1)").addClass("stormy");
+                break;
+            case (weatherCode >= 500 && weatherCode <= 599) :
+                $(".box:nth-child(1)").addClass("rainy");
+                break;
+            case (weatherCode >= 600 && weatherCode <= 699) :
+                $(".box:nth-child(1)").addClass("snowy");
+                break;
+            case (weatherCode == 800) :
+                $(".box:nth-child(1)").addClass("sunny");
+                break;
+            case (weatherCode >= 801 && weatherCode <= 899) :
+                $(".box:nth-child(1)").addClass("cloudy");
+                break;
+            case (weatherCode >= 900 && weatherCode <= 906) :
+                $(".box:nth-child(1)").addClass("extreme");
+                break;
+            default:
+                console.log("Error with weather background")
+        }
+    };
+
+    //Change second child's background
+    var changeSecondChildBackground = function (weatherCode) {
+        switch (true) {
+            case (weatherCode >= 200 && weatherCode <= 299) :
+                $(".box:nth-child(2)").addClass("stormy");
+                break;
+            case (weatherCode >= 500 && weatherCode <= 599) :
+                $(".box:nth-child(2)").addClass("rainy");
+                break;
+            case (weatherCode >= 600 && weatherCode <= 699) :
+                $(".box:nth-child(2)").addClass("snowy");
+                break;
+            case (weatherCode == 800) :
+                $(".box:nth-child(2)").addClass("sunny");
+                break;
+            case (weatherCode >= 801 && weatherCode <= 899) :
+                $(".box:nth-child(2)").addClass("cloudy");
+                break;
+            case (weatherCode >= 900 && weatherCode <= 906) :
+                $(".box:nth-child(2)").addClass("extreme");
+                break;
+            default:
+                console.log("Error with weather background")
+        }
+    };
+
+    //Change third child's background
+    var changeThirdChildBackground = function (weatherCode) {
+        switch (true) {
+            case (weatherCode >= 200 && weatherCode <= 299) :
+                $(".box:nth-child(3)").addClass("stormy");
+                break;
+            case (weatherCode >= 500 && weatherCode <= 599) :
+                $(".box:nth-child(3)").addClass("rainy");
+                break;
+            case (weatherCode >= 600 && weatherCode <= 699) :
+                $(".box:nth-child(3)").addClass("snowy");
+                break;
+            case (weatherCode == 800) :
+                $(".box:nth-child(3)").addClass("sunny");
+                break;
+            case (weatherCode >= 801 && weatherCode <= 899) :
+                $(".box:nth-child(3)").addClass("cloudy");
+                break;
+            case (weatherCode >= 900 && weatherCode <= 906) :
+                $(".box:nth-child(3)").addClass("extreme");
+                break;
+            default:
+                console.log("Error with weather background")
+        }
+    };
+
+    //Determines which child to target then calls the appropriate function to change the background
+    var determineChild = function (weatherArray) {
+        weatherArray.forEach (function (id, index) {
+            switch (index) {
+                case 0 :
+                    changeFirstChildBackground(id.weather[0].id);
+                    break;
+                case 1 :
+                    changeSecondChildBackground(id.weather[0].id);
+                    break;
+                case 2 :
+                    changeThirdChildBackground(id.weather[0].id);
+                    break;
+                default:
+                    console.log("Error with determining child");
+            }
+        });
+    };
+
     //Write current weather conditions to html
     var postWeather = function (request) {
         request.done(function (weatherInfo) {
             pageContents = [];
-            $("#location").html("<h2>" + weatherInfo.city.name + "'s Three Day Forecast</h2>");
-            for (var i = 0; i <= threeDayArray.length - 1; i += 1) {
+            console.log(weatherInfo);
+            var date;       //holds conversion of unix date from weatherInfo
+            $("#location").html("<h2>Three Day Forecast for " + weatherInfo.city.name + "</h2>");
+            for (var i = 0; i <= weatherInfo.list.length - 1; i += 1) {
+                date = moment.unix(weatherInfo.list[i].dt);
                 pageContents +=
-                    "<div class='box'><h4>" + threeDayArray[i] + "</h4>"
+                    "<div class='box'><h4>" + moment(date).format("dddd DD MMM YYYY") + "</h4>"
                     + "<h2>" + Math.round(weatherInfo.list[i].temp.max) + "/" + Math.round(weatherInfo.list[i].temp.min) + "°</h2>"
                     + "<div><img src='http://openweathermap.org/img/w/" + weatherInfo.list[i].weather[0].icon +".png'></div>"
                     + "<h4>" + weatherInfo.list[i].weather[0].main + ": " + weatherInfo.list[i].weather[0].description + "</h4>"
@@ -108,6 +171,8 @@
             }
             $("#weather").html(pageContents);
             clearAddress();
+
+            determineChild(weatherInfo.list);
         });
 
         request.fail(function () {
@@ -156,6 +221,11 @@
         weatherRequest = getWeatherInfo();
         postWeather(weatherRequest);
     };
+
+    //Initialize autocomplete functionality
+    var autocomplete = new google.maps.places.Autocomplete (document.getElementById("userLocation"), {
+        types: ['geocode']
+    });
 
     //Create click event to grab user address and pass into getLatLng
     $("#search").click(function () {
