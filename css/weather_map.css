@@ -28,9 +28,6 @@ body {
 .extreme {
     background-color: red;
 }
-.hidden {
-    display: none;
-}
 .rainy {
     background-image: url("../img/rainy.gif");
     background-size: cover;

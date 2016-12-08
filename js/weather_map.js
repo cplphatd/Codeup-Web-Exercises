@@ -12,7 +12,7 @@
     var userLat;
     var userLng;
     var mapOptions = {
-        zoom: 14,
+        zoom: 10,
         center: {
             lat: userLat,
             lng: userLng
@@ -49,103 +49,35 @@
                 lng: lng
             },
             map: map,
-            draggable: true
+            draggable: true,
+            animation: google.maps.Animation.DROP
         });
     };
 
-    //Change first child's background
-    var changeFirstChildBackground = function (weatherCode) {
-        switch (true) {
-            case (weatherCode >= 200 && weatherCode <= 299) :
-                $(".box:nth-child(1)").addClass("stormy");
-                break;
-            case (weatherCode >= 500 && weatherCode <= 599) :
-                $(".box:nth-child(1)").addClass("rainy");
-                break;
-            case (weatherCode >= 600 && weatherCode <= 699) :
-                $(".box:nth-child(1)").addClass("snowy");
-                break;
-            case (weatherCode == 800) :
-                $(".box:nth-child(1)").addClass("sunny");
-                break;
-            case (weatherCode >= 801 && weatherCode <= 899) :
-                $(".box:nth-child(1)").addClass("cloudy");
-                break;
-            case (weatherCode >= 900 && weatherCode <= 906) :
-                $(".box:nth-child(1)").addClass("extreme");
-                break;
-            default:
-                console.log("Error with weather background")
-        }
-    };
-
-    //Change second child's background
-    var changeSecondChildBackground = function (weatherCode) {
-        switch (true) {
-            case (weatherCode >= 200 && weatherCode <= 299) :
-                $(".box:nth-child(2)").addClass("stormy");
-                break;
-            case (weatherCode >= 500 && weatherCode <= 599) :
-                $(".box:nth-child(2)").addClass("rainy");
-                break;
-            case (weatherCode >= 600 && weatherCode <= 699) :
-                $(".box:nth-child(2)").addClass("snowy");
-                break;
-            case (weatherCode == 800) :
-                $(".box:nth-child(2)").addClass("sunny");
-                break;
-            case (weatherCode >= 801 && weatherCode <= 899) :
-                $(".box:nth-child(2)").addClass("cloudy");
-                break;
-            case (weatherCode >= 900 && weatherCode <= 906) :
-                $(".box:nth-child(2)").addClass("extreme");
-                break;
-            default:
-                console.log("Error with weather background")
-        }
-    };
-
-    //Change third child's background
-    var changeThirdChildBackground = function (weatherCode) {
-        switch (true) {
-            case (weatherCode >= 200 && weatherCode <= 299) :
-                $(".box:nth-child(3)").addClass("stormy");
-                break;
-            case (weatherCode >= 500 && weatherCode <= 599) :
-                $(".box:nth-child(3)").addClass("rainy");
-                break;
-            case (weatherCode >= 600 && weatherCode <= 699) :
-                $(".box:nth-child(3)").addClass("snowy");
-                break;
-            case (weatherCode == 800) :
-                $(".box:nth-child(3)").addClass("sunny");
-                break;
-            case (weatherCode >= 801 && weatherCode <= 899) :
-                $(".box:nth-child(3)").addClass("cloudy");
-                break;
-            case (weatherCode >= 900 && weatherCode <= 906) :
-                $(".box:nth-child(3)").addClass("extreme");
-                break;
-            default:
-                console.log("Error with weather background")
-        }
-    };
-
-    //Determines which child to target then calls the appropriate function to change the background
-    var determineChild = function (weatherArray) {
-        weatherArray.forEach (function (id, index) {
-            switch (index) {
-                case 0 :
-                    changeFirstChildBackground(id.weather[0].id);
+    //Loops through weather array and determines background based on weather ID
+    var changeBoxBackground = function (weatherArray) {
+        weatherArray.forEach (function (weatherCode, index) {
+            switch (true) {
+                case (weatherCode.weather[0].id >= 200 && weatherCode.weather[0].id <= 299) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("stormy");
                     break;
-                case 1 :
-                    changeSecondChildBackground(id.weather[0].id);
+                case (weatherCode.weather[0].id >= 500 && weatherCode.weather[0].id <= 599) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("rainy");
                     break;
-                case 2 :
-                    changeThirdChildBackground(id.weather[0].id);
+                case (weatherCode.weather[0].id >= 600 && weatherCode.weather[0].id <= 699) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("snowy");
+                    break;
+                case (weatherCode.weather[0].id == 800) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("sunny");
+                    break;
+                case (weatherCode.weather[0].id >= 801 && weatherCode.weather[0].id <= 899) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("cloudy");
+                    break;
+                case (weatherCode.weather[0].id >= 900 && weatherCode.weather[0].id <= 906) :
+                    $(".box:nth-child(" + (index + 1) + ")").addClass("extreme");
                     break;
                 default:
-                    console.log("Error with determining child");
+                    console.log("Error with weather background")
             }
         });
     };
@@ -172,7 +104,7 @@
             $("#weather").html(pageContents);
             clearAddress();
 
-            determineChild(weatherInfo.list);
+            changeBoxBackground(weatherInfo.list);
         });
 
         request.fail(function () {
@@ -232,4 +164,10 @@
         getLatLng();
     });
 
+    //Create keypress event on search box to grab user address and pass into getLatLng
+    $("#userLocation").keypress(function () {
+        if(event.keyCode == 13) {
+            getLatLng();
+        }
+    });
 })();
