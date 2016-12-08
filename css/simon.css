@@ -1,0 +1,24 @@
+.button {
+    display: inline-block;
+}
+.square {
+    height: 15em;
+    width: 15em;
+    border: solid;
+    border-width: 1px;
+    border-color: black;
+    display: inline-block;
+}
+#blue {
+    background-color: blue;
+}
+#green {
+    background-color: green;
+}
+#red {
+    background-color: red;
+}
+#yellow {
+    clear:left;
+    background-color: yellow;
+}
