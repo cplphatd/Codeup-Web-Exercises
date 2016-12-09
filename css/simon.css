@@ -1,6 +1,9 @@
 .button {
     display: inline-block;
 }
+.hidden {
+    display: none;
+}
 .square {
     height: 15em;
     width: 15em;

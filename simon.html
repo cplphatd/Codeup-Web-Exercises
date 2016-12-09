@@ -12,13 +12,15 @@
     <body>
         <div class="container-fluid">
             <h1>Simple Simon Game!</h1>
-            <div id="red" class="square col-sm-6 col-md-6 col-lg-6"></div>
-            <div id="blue" class="square col-sm-6 col-md-6 col-lg-6"></div>
-            <div id="yellow" class="square col-sm-6 col-md-6 col-lg-6"></div>
+            <h2 class="hidden" id="round">
+                Round <span id="roundNumber">1</span>
+            </h2>
             <div id="green" class="square col-sm-6 col-md-6 col-lg-6"></div>
+            <div id="red" class="square col-sm-6 col-md-6 col-lg-6"></div>
+            <div id="yellow" class="square col-sm-6 col-md-6 col-lg-6"></div>
+            <div id="blue" class="square col-sm-6 col-md-6 col-lg-6"></div>
             <div>
                 <button id="start" class="btn button">Start</button>
-                <button id="reset" class="btn button">Reset</button>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
