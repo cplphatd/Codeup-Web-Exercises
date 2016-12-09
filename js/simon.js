@@ -10,6 +10,7 @@
     var correctSequenceArray = [];   //will hold the correct number sequence
     var userSequenceArray = [];      //will hold the user's inputted sequence
     var currentRound;                //will hold the current round
+    var timeoutLength = 2000;        //starts at 2000 then will decrease as difficulty increases
 
     //Generates random integer to select block to add to pattern (min and max included)
     var generateRandomInteger = function (min, max) {
@@ -57,7 +58,7 @@
             if(index <= sequenceArray.length - 1) {
                 animateSequence(sequenceArray, index);
             }
-        }, 1000);
+        }, timeoutLength);
     };
 
     //Updates the user's input sequence
@@ -134,6 +135,7 @@
         console.log("correct sequence: " + correctSequenceArray);
         animateSequence(correctSequenceArray, 0);
         trackRounds(correctSequenceArray);
+        increaseDifficulty(currentRound);
     };
 
     //Keeps track of the rounds played and updates in DOM
@@ -161,6 +163,14 @@
         $("#round").removeClass("hidden");
         trackRounds(correctSequenceArray);
         $("#start").addClass("hidden");
+    };
+
+    //Increases difficulty every 5 rounds
+    var increaseDifficulty = function (roundNumber) {
+        if (roundNumber % 5 == 0) {
+            timeoutLength /= 2;
+            //Play a sound
+        }
     };
 
     //Add event listener to start button
