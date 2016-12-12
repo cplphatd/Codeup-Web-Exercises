@@ -11,16 +11,33 @@
     </head>
     <body>
         <div class="container-fluid">
-            <h1>Simple Simon Game!</h1>
-            <h2 class="hidden" id="round">
-                Round <span id="roundNumber">1</span>
-            </h2>
-            <div id="green" class="square col-sm-6 col-md-6 col-lg-6"></div>
-            <div id="red" class="square col-sm-6 col-md-6 col-lg-6"></div>
-            <div id="yellow" class="square col-sm-6 col-md-6 col-lg-6"></div>
-            <div id="blue" class="square col-sm-6 col-md-6 col-lg-6"></div>
             <div>
-                <button id="start" class="btn button">Start</button>
+                <div class="row">
+                    <h1>Final Simon Fantasy!</h1>
+                </div>
+                <div class="subRow">
+                    <h2 class="invisible" id="round">
+                        XP: <span id="roundNumber">0</span> / <span id="nextLevel">500</span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <h2 id="levelUp" class="invisible">
+                        Level up! Speed increase!
+                    </h2>
+                </div>
+            </div>
+            <div id="squareContainer">
+                <div class="squareRow">
+                    <div id="green" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                    <div id="red" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                </div>
+                <div class="squareRow">
+                    <div id="yellow" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                    <div id="blue" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                </div>
+            </div>
+            <div>
+                <button id="start" class="btn btn-success button">Start</button>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>

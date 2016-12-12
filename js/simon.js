@@ -10,7 +10,15 @@
     var correctSequenceArray = [];   //will hold the correct number sequence
     var userSequenceArray = [];      //will hold the user's inputted sequence
     var currentRound;                //will hold the current round
-    var timeoutLength = 2000;        //starts at 2000 then will decrease as difficulty increases
+    var timeoutLength = 1000;        //starts at 1000 then will decrease as difficulty increases
+    var backgroundMusic = new Audio ("audio/simonFFBackground.mp3");
+    var gameOverMusic = new Audio ("audio/simonWrong.mp3");
+    var levelUpMusic = new Audio ("audio/simonLevelUp.mp3");
+
+    //Adjust volume
+    $(levelUpMusic).prop("volume", .5);
+    $(gameOverMusic).prop("volume", .25);
+    $(backgroundMusic).prop("volume", .25);
 
     //Generates random integer to select block to add to pattern (min and max included)
     var generateRandomInteger = function (min, max) {
@@ -79,21 +87,25 @@
         switch (squareID) {
             case "red":
                 userSquare = 0;
+                animateSquare(userSquare);
                 updateUserSequence(userSquare);
                 compareSequences(correctSequenceArray, userSequenceArray);
                 break;
             case "blue":
                 userSquare = 1;
+                animateSquare(userSquare);
                 updateUserSequence(userSquare);
                 compareSequences(correctSequenceArray, userSequenceArray);
                 break;
             case "yellow":
                 userSquare = 2;
+                animateSquare(userSquare);
                 updateUserSequence(userSquare);
                 compareSequences(correctSequenceArray, userSequenceArray);
                 break;
             case "green":
                 userSquare = 3;
+                animateSquare(userSquare);
                 updateUserSequence(userSquare);
                 compareSequences(correctSequenceArray, userSequenceArray);
                 break;
@@ -118,11 +130,18 @@
             if(number == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
                 removeEventListeners();
                 clearUserSequence();
-                startNextRound();
+
+                //Delays start of next round by 1 second
+                setTimeout(function () {
+                    startNextRound();
+                }, 1000);
             }
             if(number != generatedSequenceArray[index]) {
-                alert("Wrong");
-                resetGame();
+                backgroundMusic.pause();
+                gameOverMusic.play();
+                $("#start").removeClass("invisible");
+                $("#start").off();
+                $("#start").click(resetGame);
             }
         });
     };
@@ -140,38 +159,69 @@
 
     //Keeps track of the rounds played and updates in DOM
     var trackRounds = function (sequenceArray) {
-        currentRound = sequenceArray.length;
-        $("#roundNumber").html(currentRound);
+        currentRound = sequenceArray.length - 1;
+        var currentXP = currentRound * 100;
+        var nextLevelXP = 500;
+        $("#roundNumber").html(currentXP);
+        if(currentRound % 5 == 0 && currentRound != 0) {
+            nextLevelXP += 500;
+            $("#nextLevel").html(nextLevelXP);
+        }
+
     };
 
     //Resets the game
     var resetGame = function () {
+        removeEventListeners();
         correctSequenceArray = [];
         userSequenceArray = [];
+        timeoutLength = 1000;
         currentRound = correctSequenceArray.length;
-        $("#round").addClass("hidden");
-        $("#start").removeClass("hidden");
+        $("#round").addClass("invisible");
+        $("#start").removeClass("invisible");
+        backgroundMusic.currentTime = 0;
+        gameOverMusic.pause();
+        gameOverMusic.currentTime = 0;
+        $("#nextLevel").html("500");
+        $("#reset").addClass("invisible");
+        startGame();
     };
 
     //Starts the game
     var startGame = function () {
+        playBackgroundMusic();
         currentSquare = generateRandomInteger(0, 3);
         console.log("current square: " + currentSquare);
         updateCorrectSequence(currentSquare);
         console.log("correct sequence: " + correctSequenceArray);
         animateSequence(correctSequenceArray, 0);
-        $("#round").removeClass("hidden");
+        $("#round").removeClass("invisible");
         trackRounds(correctSequenceArray);
-        $("#start").addClass("hidden");
+        $("#start").addClass("invisible");
     };
 
     //Increases difficulty every 5 rounds
     var increaseDifficulty = function (roundNumber) {
-        if (roundNumber % 5 == 0) {
-            timeoutLength /= 2;
-            //Play a sound
-        }
+         if (roundNumber % 5 == 0) {
+            timeoutLength *= .75;
+            levelUpMusic.play();
+            $("#levelUp").removeClass("invisible");
+            setTimeout(function () {
+                $("#levelUp").fadeOut().fadeIn();
+                setTimeout(function () {
+                    $("#levelUp").addClass("invisible");
+                }, 2000);
+            }, 1000);
+         }
     };
+
+    //Plays the background music
+    var playBackgroundMusic = function () {
+        backgroundMusic.loop = true;
+        backgroundMusic.play();
+    };
+
+
 
     //Add event listener to start button
     $("#start").click(startGame);

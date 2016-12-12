@@ -1,27 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+body {
+    background-image: url("../img/ricepaper_v3.png");
+    font-family: 'Press Start 2P', cursive;
+}
 .button {
     display: inline-block;
+    margin-left: 2em;
 }
-.hidden {
-    display: none;
+.invisible {
+    visibility: hidden;
+}
+.row{
+    margin-left: 20em;
+    margin-right: -20em;
 }
 .square {
-    height: 15em;
-    width: 15em;
+    height: 17em;
+    width: 17em;
     border: solid;
     border-width: 1px;
     border-color: black;
     display: inline-block;
 }
+.squareRow {
+    margin-left: 28em;
+    margin-right: -28em;
+}
+.subRow {
+    margin-left: 31em;
+    margin-right: -31em;
+}
 #blue {
-    background-color: blue;
+    background-color: #4267A2;
+    background-image: url("../img/simonBlackMage.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin-left: 1em;
 }
 #green {
-    background-color: green;
+    background-color: #3E442B;
+    background-image: url("../img/simonThief.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    margin-right: 1em;
+    margin-bottom: 1em;
 }
 #red {
-    background-color: red;
+    background-color: #FE5340;
+    background-image: url("../img/simonLancer.png");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
 #yellow {
     clear:left;
-    background-color: yellow;
+    background-color: #F8DA47;
+    background-image: url("../img/simonMime.png");
+    background-repeat: no-repeat;
+    background-size: auto;
 }
