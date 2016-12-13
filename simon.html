@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
               integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link rel="stylesheet" href="css/simon.css">
+        <link rel="stylesheet" href="css/animate.css">
     </head>
     <body>
         <div class="container-fluid">
@@ -21,23 +22,27 @@
                     </h2>
                 </div>
                 <div class="row">
-                    <h2 id="levelUp" class="invisible">
+                    <h2 id="levelUp" class="invisible animated">
                         Level up! Speed increase!
                     </h2>
                 </div>
             </div>
             <div id="squareContainer">
                 <div class="squareRow">
-                    <div id="green" class="square col-sm-6 col-md-6 col-lg-6"></div>
-                    <div id="red" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                    <div id="green" class="square col-sm-5 col-md-5 col-lg-4"></div>
+                    <div id="red" class="square col-sm-5 col-md-5 col-lg-4"></div>
+                    <div>
+                        <button id="start" class="btn btn-success button col-sm-2 col-md-2 col-lg-1">Start</button>
+                    </div>
                 </div>
                 <div class="squareRow">
-                    <div id="yellow" class="square col-sm-6 col-md-6 col-lg-6"></div>
-                    <div id="blue" class="square col-sm-6 col-md-6 col-lg-6"></div>
+                    <div id="yellow" class="square col-sm-5 col-md-5 col-lg-4"></div>
+                    <div id="blue" class="square col-sm-5 col-md-5 col-lg-4"></div>
+                    <div id="difficulty" class="btn-group col-sm-4 col-md-4 col-lg-4">
+                        <button id="normal" class="btn btn-warning">Normal</button>
+                        <button id="hard" class="btn btn-warning" value="true">Hard</button>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button id="start" class="btn btn-success button">Start</button>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>

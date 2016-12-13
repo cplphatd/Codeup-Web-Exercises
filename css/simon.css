@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
 body {
     background-image: url("../img/ricepaper_v3.png");
+    color: #3B0D11;
     font-family: 'Press Start 2P', cursive;
 }
 .button {
@@ -13,6 +14,7 @@ body {
 .row{
     margin-left: 20em;
     margin-right: -20em;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 .square {
     height: 17em;
@@ -29,6 +31,7 @@ body {
 .subRow {
     margin-left: 31em;
     margin-right: -31em;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
 }
 #blue {
     background-color: #4267A2;

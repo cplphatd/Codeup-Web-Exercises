@@ -14,11 +14,14 @@
     var backgroundMusic = new Audio ("audio/simonFFBackground.mp3");
     var gameOverMusic = new Audio ("audio/simonWrong.mp3");
     var levelUpMusic = new Audio ("audio/simonLevelUp.mp3");
+    var correctSequenceMusic = new Audio ("audio/simonButtonZero.mp3");
+    var hardMode = false;
 
     //Adjust volume
     $(levelUpMusic).prop("volume", .5);
     $(gameOverMusic).prop("volume", .25);
     $(backgroundMusic).prop("volume", .25);
+    $(correctSequenceMusic).prop("volume", .5);
 
     //Generates random integer to select block to add to pattern (min and max included)
     var generateRandomInteger = function (min, max) {
@@ -60,7 +63,11 @@
 
             //Ensures user cannot click while sequence is playing
             if(index == sequenceArray.length) {
-                addEventListeners();
+
+                //Adds delay to ensure last animation finishes before user can click
+                setTimeout (function () {
+                    addEventListeners();
+                }, 1000);
             }
 
             if(index <= sequenceArray.length - 1) {
@@ -111,6 +118,7 @@
 
     var compareSequences = function (generatedSequenceArray, userClickedSquare) {
         if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
+            correctSequenceMusic.play();
             index = 0;  //reset the counter
             removeEventListeners();
 
@@ -121,11 +129,11 @@
         } else if (userClickedSquare == generatedSequenceArray [index]) {
             index += 1;
         } else {
+                removeEventListeners();
                 backgroundMusic.pause();
                 gameOverMusic.play();
-                $("#start").removeClass("invisible");
-                $("#start").off();
-                $("#start").click(resetGame);
+                $("#start").removeClass("invisible").off().click(resetGame);
+                index = 0;
         }
     };
 
@@ -176,6 +184,7 @@
         $("#round").removeClass("invisible");
         trackRounds(correctSequenceArray);
         $("#start").addClass("invisible");
+        $("#difficulty").addClass("invisible");
     };
 
     //Increases difficulty every 5 rounds
@@ -185,12 +194,25 @@
             levelUpMusic.play();
             $("#levelUp").removeClass("invisible");
             setTimeout(function () {
-                $("#levelUp").fadeOut().fadeIn();
+                // $("#levelUp").fadeOut().fadeIn();
+                $("#levelUp").addClass("bounce");
                 setTimeout(function () {
-                    $("#levelUp").addClass("invisible");
+                    $("#levelUp").removeClass("bounce").addClass("invisible");
                 }, 2000);
             }, 1000);
          }
+    };
+
+    //Sets hard mode
+    var setHardMode = function () {
+        hardMode = true;
+        console.log(hardMode);
+    };
+
+    //Sets normal mode
+    var setNormalMode = function () {
+        hardMode = false;
+        console.log(hardMode);
     };
 
     //Plays the background music
@@ -201,4 +223,6 @@
 
     //Add event listener to start button
     $("#start").click(startGame);
+    $("#hard").click(setHardMode);
+    $("#normal").click(setNormalMode);
 })();
