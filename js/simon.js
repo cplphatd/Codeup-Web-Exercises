@@ -8,14 +8,14 @@
     var currentSquare;               //will hold the number of the current square of the pattern
     var userSquare;                  //will hold the number of the square that the user clicks
     var correctSequenceArray = [];   //will hold the correct number sequence
-    var index = 0;                   //will be used to iterate through correctSequenceArray as user clicks
+    var index;                   //will be used to iterate through correctSequenceArray as user clicks
     var currentRound;                //will hold the current round
     var timeoutLength = 1000;        //starts at 1000 then will decrease as difficulty increases
     var backgroundMusic = new Audio ("audio/simonFFBackground.mp3");
     var gameOverMusic = new Audio ("audio/simonWrong.mp3");
     var levelUpMusic = new Audio ("audio/simonLevelUp.mp3");
     var correctSequenceMusic = new Audio ("audio/simonButtonZero.mp3");
-    var hardMode = false;
+    var hardMode = null;
 
     //Adjust volume
     $(levelUpMusic).prop("volume", .5);
@@ -33,6 +33,7 @@
     //Updates the correct sequence
     var updateCorrectSequence = function (newNumber) {
         correctSequenceArray.push(newNumber);
+        setDifficultyIndex(hardMode);
     };
 
     //Animates the corresponding square
@@ -116,24 +117,67 @@
         $(".square").off();
     };
 
-    var compareSequences = function (generatedSequenceArray, userClickedSquare) {
-        if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
-            correctSequenceMusic.play();
-            index = 0;  //reset the counter
-            removeEventListeners();
-
-            //Delays start of next round by 1 second
-            setTimeout(function () {
-                startNextRound();
-            }, 1000);
-        } else if (userClickedSquare == generatedSequenceArray [index]) {
-            index += 1;
+    //Sets the difficulty starting index
+    var setDifficultyIndex = function (difficulty) {
+        if (hardMode == false) {
+            index = 0;
         } else {
-                removeEventListeners();
-                backgroundMusic.pause();
-                gameOverMusic.play();
-                $("#start").removeClass("invisible").off().click(resetGame);
-                index = 0;
+            index = correctSequenceArray.length - 1;
+        }
+    };
+
+    //Compares the user's sequence with the correct sequence
+    var compareSequences = function (generatedSequenceArray, userClickedSquare) {
+        switch (hardMode) {
+            case false:
+                if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
+                    correctSequenceMusic.play();
+                    index = 0;  //reset the counter
+                    removeEventListeners();
+
+                    //Delays start of next round by 1 second
+                    setTimeout(function () {
+                        startNextRound();
+                    }, 1000);
+                } else if (userClickedSquare == generatedSequenceArray [index]) {
+                    index += 1;
+                } else {
+                    removeEventListeners();
+                    backgroundMusic.pause();
+                    gameOverMusic.play();
+                    $("#start").removeClass("invisible").off().click(resetGame);
+                    $("#difficulty").removeClass("invisible");
+                    index = 0;
+                    hardMode = null;
+                    $("#warning").addClass("hidden");
+
+                }
+                break;
+            case true:
+                if (userClickedSquare == generatedSequenceArray[index] && index == 0) {
+                    correctSequenceMusic.play();
+                    index = generatedSequenceArray.length - 1;  //reset the counter
+                    removeEventListeners();
+
+                    //Delays start of next round by 1 second
+                    setTimeout(function () {
+                        startNextRound();
+                    }, 1000);
+                } else if (userClickedSquare == generatedSequenceArray [index]) {
+                    index -= 1;
+                } else {
+                    removeEventListeners();
+                    backgroundMusic.pause();
+                    gameOverMusic.play();
+                    $("#start").removeClass("invisible").off().click(resetGame);
+                    $("#difficulty").removeClass("invisible");
+                    index = 0;
+                    hardMode = null;
+                    $("#warning").addClass("hidden");
+                }
+                break;
+            default:
+                console.log("error");
         }
     };
 
@@ -165,26 +209,29 @@
         correctSequenceArray = [];
         timeoutLength = 1000;
         currentRound = correctSequenceArray.length;
-        $("#round").addClass("invisible");
         $("#start").removeClass("invisible");
-        backgroundMusic.currentTime = 0;
-        gameOverMusic.pause();
-        gameOverMusic.currentTime = 0;
-        $("#nextLevel").html("500");
-        $("#reset").addClass("invisible");
-        startGame();
+        if (hardMode != null) {
+            $("#round").addClass("invisible");
+            backgroundMusic.currentTime = 0;
+            gameOverMusic.pause();
+            gameOverMusic.currentTime = 0;
+            $("#nextLevel").html("500");
+            startGame();
+        }
     };
 
     //Starts the game
     var startGame = function () {
-        playBackgroundMusic();
-        currentSquare = generateRandomInteger(0, 3);
-        updateCorrectSequence(currentSquare);
-        animateSequence(correctSequenceArray, 0);
-        $("#round").removeClass("invisible");
-        trackRounds(correctSequenceArray);
-        $("#start").addClass("invisible");
-        $("#difficulty").addClass("invisible");
+        if (hardMode != null) {
+            playBackgroundMusic();
+            currentSquare = generateRandomInteger(0, 3);
+            updateCorrectSequence(currentSquare);
+            animateSequence(correctSequenceArray, 0);
+            $("#round").removeClass("invisible");
+            trackRounds(correctSequenceArray);
+            $("#start").addClass("invisible");
+            $("#difficulty").addClass("invisible");
+        }
     };
 
     //Increases difficulty every 5 rounds
@@ -206,13 +253,13 @@
     //Sets hard mode
     var setHardMode = function () {
         hardMode = true;
-        console.log(hardMode);
+        $("#warning").removeClass("hidden");
     };
 
     //Sets normal mode
     var setNormalMode = function () {
         hardMode = false;
-        console.log(hardMode);
+        $("#warning").addClass("hidden");
     };
 
     //Plays the background music
