@@ -8,7 +8,7 @@
     var currentSquare;               //will hold the number of the current square of the pattern
     var userSquare;                  //will hold the number of the square that the user clicks
     var correctSequenceArray = [];   //will hold the correct number sequence
-    var userSequenceArray = [];      //will hold the user's inputted sequence
+    var index = 0;                   //will be used to iterate through correctSequenceArray as user clicks
     var currentRound;                //will hold the current round
     var timeoutLength = 1000;        //starts at 1000 then will decrease as difficulty increases
     var backgroundMusic = new Audio ("audio/simonFFBackground.mp3");
@@ -69,17 +69,6 @@
         }, timeoutLength);
     };
 
-    //Updates the user's input sequence
-    var updateUserSequence = function (userNumber) {
-        userSequenceArray.push(userNumber);
-        console.log("user array: " + userSequenceArray);
-    };
-
-    //Clears the user's input sequence
-    var clearUserSequence = function () {
-        userSequenceArray = [];
-    };
-
     //Takes user click and assigns value to userSquare
     var getUserSquare = function () {
         var squareID;
@@ -88,26 +77,22 @@
             case "red":
                 userSquare = 0;
                 animateSquare(userSquare);
-                updateUserSequence(userSquare);
-                compareSequences(correctSequenceArray, userSequenceArray);
+                compareSequences(correctSequenceArray, userSquare);
                 break;
             case "blue":
                 userSquare = 1;
                 animateSquare(userSquare);
-                updateUserSequence(userSquare);
-                compareSequences(correctSequenceArray, userSequenceArray);
+                compareSequences(correctSequenceArray, userSquare);
                 break;
             case "yellow":
                 userSquare = 2;
                 animateSquare(userSquare);
-                updateUserSequence(userSquare);
-                compareSequences(correctSequenceArray, userSequenceArray);
+                compareSequences(correctSequenceArray, userSquare);
                 break;
             case "green":
                 userSquare = 3;
                 animateSquare(userSquare);
-                updateUserSequence(userSquare);
-                compareSequences(correctSequenceArray, userSequenceArray);
+                compareSequences(correctSequenceArray, userSquare);
                 break;
             default:
                 console.log("Error " + squareID);
@@ -124,34 +109,30 @@
         $(".square").off();
     };
 
-    //Compares correct sequence with user's sequence
-    var compareSequences = function (generatedSequenceArray, inputtedSequenceArray) {
-        inputtedSequenceArray.forEach(function (number, index) {
-            if(number == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
-                removeEventListeners();
-                clearUserSequence();
+    var compareSequences = function (generatedSequenceArray, userClickedSquare) {
+        if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
+            index = 0;  //reset the counter
+            removeEventListeners();
 
-                //Delays start of next round by 1 second
-                setTimeout(function () {
-                    startNextRound();
-                }, 1000);
-            }
-            if(number != generatedSequenceArray[index]) {
+            //Delays start of next round by 1 second
+            setTimeout(function () {
+                startNextRound();
+            }, 1000);
+        } else if (userClickedSquare == generatedSequenceArray [index]) {
+            index += 1;
+        } else {
                 backgroundMusic.pause();
                 gameOverMusic.play();
                 $("#start").removeClass("invisible");
                 $("#start").off();
                 $("#start").click(resetGame);
-            }
-        });
+        }
     };
 
     //Starts next round
     var startNextRound = function () {
         currentSquare = generateRandomInteger(0, 3);
-        console.log("current square: " + currentSquare);
         updateCorrectSequence(currentSquare);
-        console.log("correct sequence: " + correctSequenceArray);
         animateSequence(correctSequenceArray, 0);
         trackRounds(correctSequenceArray);
         increaseDifficulty(currentRound);
@@ -174,7 +155,6 @@
     var resetGame = function () {
         removeEventListeners();
         correctSequenceArray = [];
-        userSequenceArray = [];
         timeoutLength = 1000;
         currentRound = correctSequenceArray.length;
         $("#round").addClass("invisible");
@@ -191,9 +171,7 @@
     var startGame = function () {
         playBackgroundMusic();
         currentSquare = generateRandomInteger(0, 3);
-        console.log("current square: " + currentSquare);
         updateCorrectSequence(currentSquare);
-        console.log("correct sequence: " + correctSequenceArray);
         animateSequence(correctSequenceArray, 0);
         $("#round").removeClass("invisible");
         trackRounds(correctSequenceArray);
@@ -220,8 +198,6 @@
         backgroundMusic.loop = true;
         backgroundMusic.play();
     };
-
-
 
     //Add event listener to start button
     $("#start").click(startGame);
