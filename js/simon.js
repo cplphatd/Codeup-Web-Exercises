@@ -8,7 +8,7 @@
     var currentSquare;               //will hold the number of the current square of the pattern
     var userSquare;                  //will hold the number of the square that the user clicks
     var correctSequenceArray = [];   //will hold the correct number sequence
-    var index;                   //will be used to iterate through correctSequenceArray as user clicks
+    var index;                       //will be used to iterate through correctSequenceArray as user clicks
     var currentRound;                //will hold the current round
     var timeoutLength = 1000;        //starts at 1000 then will decrease as difficulty increases
     var backgroundMusic = new Audio ("audio/simonFFBackground.mp3");
@@ -17,7 +17,7 @@
     var correctSequenceMusic = new Audio ("audio/simonButtonZero.mp3");
     var hardMode = null;
 
-    //Adjust volume
+    //Adjust volumes
     $(levelUpMusic).prop("volume", .5);
     $(gameOverMusic).prop("volume", .25);
     $(backgroundMusic).prop("volume", .25);
@@ -33,6 +33,8 @@
     //Updates the correct sequence
     var updateCorrectSequence = function (newNumber) {
         correctSequenceArray.push(newNumber);
+
+        //Must choose which index to start from at this point
         setDifficultyIndex(hardMode);
     };
 
@@ -52,7 +54,7 @@
                 $("#green").fadeOut().fadeIn();
                 break;
             default:
-                console.log("Error :" + squareNumber);
+                console.log("Error @ animateSquare :" + squareNumber);
         }
     };
 
@@ -103,7 +105,7 @@
                 compareSequences(correctSequenceArray, userSquare);
                 break;
             default:
-                console.log("Error " + squareID);
+                console.log("Error @ getUserSquare: " + squareID);
         }
     };
 
@@ -126,7 +128,7 @@
         }
     };
 
-    //Compares the user's sequence with the correct sequence
+    //Compares the user's sequence with the correct sequence (switch selects which comparison method to use)
     var compareSequences = function (generatedSequenceArray, userClickedSquare) {
         switch (hardMode) {
             case false:
@@ -146,11 +148,10 @@
                     backgroundMusic.pause();
                     gameOverMusic.play();
                     $("#start").removeClass("invisible").off().click(resetGame);
-                    $("#difficulty").removeClass("invisible");
+                    $("#difficulty").show();
                     index = 0;
                     hardMode = null;
                     $("#warning").addClass("hidden");
-
                 }
                 break;
             case true:
@@ -170,14 +171,14 @@
                     backgroundMusic.pause();
                     gameOverMusic.play();
                     $("#start").removeClass("invisible").off().click(resetGame);
-                    $("#difficulty").removeClass("invisible");
+                    $("#difficulty").show();
                     index = 0;
                     hardMode = null;
                     $("#warning").addClass("hidden");
                 }
                 break;
             default:
-                console.log("error");
+                console.log("Error @ switch on hardMode");
         }
     };
 
@@ -230,7 +231,7 @@
             $("#round").removeClass("invisible");
             trackRounds(correctSequenceArray);
             $("#start").addClass("invisible");
-            $("#difficulty").addClass("invisible");
+            $("#difficulty").hide();
         }
     };
 
@@ -268,7 +269,7 @@
         backgroundMusic.play();
     };
 
-    //Add event listener to start button
+    //Add event listeners
     $("#start").click(startGame);
     $("#hard").click(setHardMode);
     $("#normal").click(setNormalMode);

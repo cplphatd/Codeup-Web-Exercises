@@ -11,40 +11,42 @@
         <link rel="stylesheet" href="css/animate.css">
     </head>
     <body>
-        <div class="container-fluid">
-            <div>
-                <div class="row">
-                    <h1>Final Simon Fantasy!</h1>
-                </div>
-                <div class="subRow">
-                    <h2 class="invisible" id="round">
-                        XP: <span id="roundNumber">0</span> / <span id="nextLevel">500</span>
-                    </h2>
-                </div>
-                <div class="row">
-                    <div id="warning" class="hidden">
-                        Hard mode activated! Enter the sequence in reverse!
+        <div id="mainContainer">
+            <div class="mainChild">
+                <div class="vertContainer">
+                    <div>
+                        <h1>Final Simon Fantasy!</h1>
+                        <h2 id="round" class="invisible">
+                            XP:  <span id="roundNumber">0</span> / <span id="nextLevel">500</span>
+                        </h2>
+                        <div id="warning" class="hidden">
+                            Hard mode activated! Enter the sequence in reverse!
+                        </div>
+                        <h2 id="levelUp" class="invisible animated">
+                            Level up! Speed increase!
+                        </h2>
                     </div>
-                    <h2 id="levelUp" class="invisible animated">
-                        Level up! Speed increase!
-                    </h2>
                 </div>
             </div>
-            <div id="squareContainer">
-                <div class="squareRow">
-                    <div id="green" class="square col-sm-5 col-md-5 col-lg-4"></div>
-                    <div id="red" class="square col-sm-5 col-md-5 col-lg-4"></div>
-                    <div>
-                        <button id="start" class="btn btn-success button col-sm-2 col-md-2 col-lg-1">Start</button>
+            <div class="mainChild">
+                <div class="horizContainer">
+                    <div class="vertContainer">
+                        <div class="horizContainer">
+                            <div id="green" class="square"></div>
+                            <div id="red" class="square"></div>
+                        </div>
+                        <div class="horizContainer">
+                            <div id="yellow" class="square"></div>
+                            <div id="blue" class="square"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="squareRow">
-                    <div id="yellow" class="square col-sm-5 col-md-5 col-lg-4"></div>
-                    <div id="blue" class="square col-sm-5 col-md-5 col-lg-4"></div>
-                    <div id="difficulty" class="btn-group col-sm-4 col-md-4 col-lg-4">
-                        <div>Choose a difficulty:</div>
-                        <button id="normal" class="btn btn-warning">Normal</button>
-                        <button id="hard" class="btn btn-warning" value="true">Hard</button>
+                    <div id="difficulty" class="vertContainer">
+                        <div>Choose difficulty:</div>
+                        <div class="btn-group">
+                            <button id="normal" class="btn btn-warning">Normal</button>
+                            <button id="hard" class="btn btn-warning">Hard</button>
+                        </div>
+                        <button id="start" class="btn btn-success">Start</button>
                     </div>
                 </div>
             </div>
