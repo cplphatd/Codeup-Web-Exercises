@@ -7,12 +7,13 @@
     //Global variables
     var weatherRequest;         //Holds weather info from ajax .get request (response)
     var pageContents = [];      //Array that holds string of html to post to page
+    var days = 3;               //User will set number of days for forecast (default will be 3)
 
     //Set map options with user lat/long from user inputted address
     var userLat;
     var userLng;
     var mapOptions = {
-        zoom: 10,
+        zoom: 14,
         center: {
             lat: userLat,
             lng: userLng
@@ -36,7 +37,7 @@
             lat: userLat,
             lon: userLng,
             units: "imperial",
-            cnt: "3"
+            cnt: days
         });
     };
 
@@ -88,7 +89,7 @@
             pageContents = [];
             console.log(weatherInfo);
             var date;       //holds conversion of unix date from weatherInfo
-            $("#location").html("<h2>Three Day Forecast for " + weatherInfo.city.name + "</h2>");
+            $("#location").html("<h2>" + days + " Day Forecast for " + weatherInfo.city.name + "</h2>");
             for (var i = 0; i <= weatherInfo.list.length - 1; i += 1) {
                 date = moment.unix(weatherInfo.list[i].dt);
                 pageContents +=
@@ -148,10 +149,19 @@
 
     //Gets lat/long from marker and sends ajax request for new location
     var getMarkerLocation = function (event) {
+
+        //Days can be updated between drag events
+        getDays();
+
         userLat = event.latLng.lat();
         userLng = event.latLng.lng();
         weatherRequest = getWeatherInfo();
         postWeather(weatherRequest);
+    };
+
+    //Gets days for forecast
+    var getDays = function () {
+        days = $("#days").val();
     };
 
     //Initialize autocomplete functionality
@@ -165,8 +175,9 @@
     });
 
     //Create keypress event on search box to grab user address and pass into getLatLng
-    $("#userLocation").keypress(function () {
+    $("#searchBar").keypress(function () {
         if(event.keyCode == 13) {
+            getDays();
             getLatLng();
         }
     });

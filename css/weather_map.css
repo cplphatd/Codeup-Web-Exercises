@@ -62,6 +62,11 @@ body {
     flex-flow: row wrap;
     justify-content: space-around;
 }
+#days {
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 5em;
+}
 #forecastFlexBox {
     flex: 2 auto;
 }
@@ -74,11 +79,11 @@ body {
 }
 #map-canvas {
     width: 30em;
-    height: 30em;
+    height: 42em;
 }
 #mapFlexBox {
     flex: 1 auto;
-    justify-content: center;
+    justify-content: flex-start;
 }
 #userLocation {
     width: 40em;

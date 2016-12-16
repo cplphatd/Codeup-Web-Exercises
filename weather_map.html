@@ -13,11 +13,10 @@
         <div id="mainContainer">
             <div id="forecastFlexBox" class="vertContainer">
                 <div class="horizContainer"><h1>Tell me the weather at...</h1></div>
-                <div class="horizContainer">
-                    <label for="userLocation">
-                        <input id="userLocation" class="form-control" type="text" placeholder="Please enter the location">
-                    </label>
-                    <button id="search" class="btn-primary">Search</button>
+                <div id="searchBar" class="horizContainer">
+                    <input id="userLocation" class="form-control" type="text" placeholder="Please enter the location and days of forecast">
+                    <input id="days" class="form-control" type="text" value="3">
+                    <button id="search" class="btn btn-primary">Search</button>
                 </div>
                 <div id="location" class="horizContainer"></div>
                 <div id="weather" class="wrapHorizContainer center"></div>
