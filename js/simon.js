@@ -135,7 +135,7 @@
         }
     };
 
-    //Compares the user's sequence with the correct sequence (switch selects which comparison method to use)
+    //Selects which comparison method to use
     var determineComparisonMethod = function () {
         switch (hardMode) {
             case false:

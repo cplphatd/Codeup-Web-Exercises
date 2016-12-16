@@ -4,8 +4,8 @@
 "use strict";
 (function () {
 
+    //Global variables
     var weatherRequest;         //Holds weather info from ajax .get request (response)
-
     var pageContents = [];      //Array that holds string of html to post to page
 
     //Set map options with user lat/long from user inputted address

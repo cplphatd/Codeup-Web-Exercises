@@ -28,6 +28,11 @@ body {
 .extreme {
     background-color: red;
 }
+.horizContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
 .rainy {
     background-image: url("../img/rainy.gif");
     background-size: cover;
@@ -48,14 +53,32 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.vertContainer {
+    display: flex;
+    flex-flow: column nowrap;
+}
+.wrapHorizContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+#forecastFlexBox {
+    flex: 2 auto;
+}
 #location {
     text-decoration: underline;
 }
+#mainContainer {
+    display: flex;
+    flex-flow: row nowrap;
+}
 #map-canvas {
-    width: 910px;
-    height: 20em;
-    margin-right: auto;
-    margin-left: auto;
+    width: 30em;
+    height: 30em;
+}
+#mapFlexBox {
+    flex: 1 auto;
+    justify-content: center;
 }
 #userLocation {
     width: 40em;

@@ -10,17 +10,21 @@
         <link rel="stylesheet" href="css/weather_map.css">
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="center"><h1>Tell me the weather at...</h1></div>
-            <div class="col-sm-12 col-md-12 col-lg-12 center">
-                <label for="userLocation">
-                    <input id="userLocation" class="form-control" type="text" placeholder="Please enter the location">
-                </label>
-                <button id="search" class="btn-primary">Search</button>
+        <div id="mainContainer">
+            <div id="forecastFlexBox" class="vertContainer">
+                <div class="horizContainer"><h1>Tell me the weather at...</h1></div>
+                <div class="horizContainer">
+                    <label for="userLocation">
+                        <input id="userLocation" class="form-control" type="text" placeholder="Please enter the location">
+                    </label>
+                    <button id="search" class="btn-primary">Search</button>
+                </div>
+                <div id="location" class="horizContainer"></div>
+                <div id="weather" class="wrapHorizContainer center"></div>
             </div>
-            <div id="location" class="center"></div>
-            <div id="weather" class="center"></div>
-            <div id="map-canvas"></div>
+            <div id="mapFlexBox" class="vertContainer">
+                <div id="map-canvas" class="horizContainer"></div>
+            </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
