@@ -69,7 +69,6 @@
 
                 //Adds delay to ensure last animation finishes before user can click
                 setTimeout (function () {
-                    console.log(correctSequenceArray);
                     addEventListeners();
                 }, 1000);
             }
@@ -213,10 +212,8 @@
         var nextLevelXP = ((currentRound + 1) * 100) + 400;
         $("#roundNumber").html(currentXP);
         if(currentRound % 5 == 0) {
-            console.log(nextLevelXP);
             $("#nextLevel").text(nextLevelXP);
         }
-
     };
 
     //Resets the game
