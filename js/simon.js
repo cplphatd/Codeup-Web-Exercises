@@ -69,6 +69,7 @@
 
                 //Adds delay to ensure last animation finishes before user can click
                 setTimeout (function () {
+                    console.log(correctSequenceArray);
                     addEventListeners();
                 }, 1000);
             }
@@ -81,7 +82,6 @@
 
     //Takes user click and assigns value to userSquare
     var getUserSquare = function () {
-        console.log(correctSequenceArray);
         switch (userSquare) {
             case 0:
                 animateSquare(userSquare);
@@ -107,11 +107,10 @@
     //Add event listeners for user sequence
     var addEventListeners = function () {
         $(".square").click(function () {
-            console.log("you clicked: " + $(this).index());
             userSquare = $(this).index();
 
             //This statement is needed to get around flexbox issues with the index
-            // (indexes in terms of squares in flex container,
+            // (indexes are in terms of squares in flex container,
             // so each row is an array of two squares instead of one array of four squares)
             if($(this).attr("id") === "yellow" || $(this).attr("id") === "blue") {
                 userSquare += 2;
@@ -211,11 +210,11 @@
     var trackRounds = function (sequenceArray) {
         currentRound = sequenceArray.length - 1;
         var currentXP = currentRound * 100;
-        var nextLevelXP = 500;
+        var nextLevelXP = ((currentRound + 1) * 100) + 400;
         $("#roundNumber").html(currentXP);
-        if(currentRound % 5 == 0 && currentRound != 0) {
-            nextLevelXP += 500;
-            $("#nextLevel").html(nextLevelXP);
+        if(currentRound % 5 == 0) {
+            console.log(nextLevelXP);
+            $("#nextLevel").text(nextLevelXP);
         }
 
     };
