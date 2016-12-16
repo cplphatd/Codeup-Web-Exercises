@@ -42,16 +42,16 @@
     var animateSquare = function (squareNumber) {
         switch (squareNumber) {
             case 0:
-                $("#red").fadeOut().fadeIn();
+                $("#green").fadeOut().fadeIn();
                 break;
             case 1:
-                $("#blue").fadeOut().fadeIn();
+                $("#red").fadeOut().fadeIn();
                 break;
             case 2:
                 $("#yellow").fadeOut().fadeIn();
                 break;
             case 3:
-                $("#green").fadeOut().fadeIn();
+                $("#blue").fadeOut().fadeIn();
                 break;
             default:
                 console.log("Error @ animateSquare :" + squareNumber);
@@ -81,37 +81,44 @@
 
     //Takes user click and assigns value to userSquare
     var getUserSquare = function () {
-        var squareID;
-        squareID = this.getAttribute("id");
-        switch (squareID) {
-            case "red":
-                userSquare = 0;
+        console.log(correctSequenceArray);
+        switch (userSquare) {
+            case 0:
                 animateSquare(userSquare);
-                compareSequences(correctSequenceArray, userSquare);
+                determineComparisonMethod();
                 break;
-            case "blue":
-                userSquare = 1;
+            case 1:
                 animateSquare(userSquare);
-                compareSequences(correctSequenceArray, userSquare);
+                determineComparisonMethod();
                 break;
-            case "yellow":
-                userSquare = 2;
+            case 2:
                 animateSquare(userSquare);
-                compareSequences(correctSequenceArray, userSquare);
+                determineComparisonMethod();
                 break;
-            case "green":
-                userSquare = 3;
+            case 3:
                 animateSquare(userSquare);
-                compareSequences(correctSequenceArray, userSquare);
+                determineComparisonMethod();
                 break;
             default:
-                console.log("Error @ getUserSquare: " + squareID);
+                console.log("Error @ getUserSquare: " + userSquare);
         }
     };
 
     //Add event listeners for user sequence
     var addEventListeners = function () {
-        $(".square").click(getUserSquare);
+        $(".square").click(function () {
+            console.log("you clicked: " + $(this).index());
+            userSquare = $(this).index();
+
+            //This statement is needed to get around flexbox issues with the index
+            // (indexes in terms of squares in flex container,
+            // so each row is an array of two squares instead of one array of four squares)
+            if($(this).attr("id") === "yellow" || $(this).attr("id") === "blue") {
+                userSquare += 2;
+            }
+
+            getUserSquare();
+        });
     };
 
     //Remove event listeners for user sequence
@@ -129,57 +136,66 @@
     };
 
     //Compares the user's sequence with the correct sequence (switch selects which comparison method to use)
-    var compareSequences = function (generatedSequenceArray, userClickedSquare) {
+    var determineComparisonMethod = function () {
         switch (hardMode) {
             case false:
-                if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
-                    correctSequenceMusic.play();
-                    index = 0;  //reset the counter
-                    removeEventListeners();
-
-                    //Delays start of next round by 1 second
-                    setTimeout(function () {
-                        startNextRound();
-                    }, 1000);
-                } else if (userClickedSquare == generatedSequenceArray [index]) {
-                    index += 1;
-                } else {
-                    removeEventListeners();
-                    backgroundMusic.pause();
-                    gameOverMusic.play();
-                    $("#start").removeClass("invisible").off().click(resetGame);
-                    $("#difficulty").show();
-                    index = 0;
-                    hardMode = null;
-                    $("#warning").addClass("hidden");
-                }
+                compareSequencesNormal(correctSequenceArray, userSquare);
                 break;
             case true:
-                if (userClickedSquare == generatedSequenceArray[index] && index == 0) {
-                    correctSequenceMusic.play();
-                    index = generatedSequenceArray.length - 1;  //reset the counter
-                    removeEventListeners();
-
-                    //Delays start of next round by 1 second
-                    setTimeout(function () {
-                        startNextRound();
-                    }, 1000);
-                } else if (userClickedSquare == generatedSequenceArray [index]) {
-                    index -= 1;
-                } else {
-                    removeEventListeners();
-                    backgroundMusic.pause();
-                    gameOverMusic.play();
-                    $("#start").removeClass("invisible").off().click(resetGame);
-                    $("#difficulty").show();
-                    index = 0;
-                    hardMode = null;
-                    $("#warning").addClass("hidden");
-                }
+                compareSequencesHard(correctSequenceArray, userSquare);
                 break;
             default:
-                console.log("Error @ switch on hardMode");
+                console.log("Error @ switch on hardMode: " + hardMode);
         }
+    };
+
+    //Compares sequences for normal mode
+    var compareSequencesNormal = function (generatedSequenceArray, userClickedSquare) {
+        if (userClickedSquare == generatedSequenceArray[index] && index == generatedSequenceArray.length - 1) {
+            correctSequenceMusic.play();
+            index = 0;  //reset the counter
+            removeEventListeners();
+
+            //Delays start of next round by 1 second
+            setTimeout(function () {
+                startNextRound();
+            }, 1000);
+        } else if (userClickedSquare == generatedSequenceArray [index]) {
+            index += 1;
+        } else {
+            gameOver();
+        }
+    };
+
+    //Compares sequences for hard mode
+    var compareSequencesHard = function (generatedSequenceArray, userClickedSquare) {
+        if (userClickedSquare == generatedSequenceArray[index] && index == 0) {
+            correctSequenceMusic.play();
+            index = generatedSequenceArray.length - 1;  //reset the counter
+            removeEventListeners();
+
+            //Delays start of next round by 1 second
+            setTimeout(function () {
+                startNextRound();
+            }, 1000);
+        } else if (userClickedSquare == generatedSequenceArray [index]) {
+            index -= 1;
+        } else {
+            gameOver();
+            console.log(hardMode);
+        }
+    };
+
+    //Sets conditions when user reaches a game over status
+    var gameOver = function () {
+        removeEventListeners();
+        backgroundMusic.pause();
+        gameOverMusic.play();
+        $("#start").off().click(resetGame);
+        $("#controls").show();
+        index = 0;
+        hardMode = null;
+        $("#warning").addClass("hidden");
     };
 
     //Starts next round
@@ -210,8 +226,8 @@
         correctSequenceArray = [];
         timeoutLength = 1000;
         currentRound = correctSequenceArray.length;
-        $("#start").removeClass("invisible");
         if (hardMode != null) {
+            $("#controls").hide();
             $("#round").addClass("invisible");
             backgroundMusic.currentTime = 0;
             gameOverMusic.pause();
@@ -230,8 +246,7 @@
             animateSequence(correctSequenceArray, 0);
             $("#round").removeClass("invisible");
             trackRounds(correctSequenceArray);
-            $("#start").addClass("invisible");
-            $("#difficulty").hide();
+            $("#controls").hide();
         }
     };
 

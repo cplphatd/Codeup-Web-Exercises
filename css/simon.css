@@ -10,14 +10,11 @@ h2 {
 }
 .horizContainer {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
 }
 .invisible {
     visibility: hidden;
-}
-.mainChild {
-    flex: 1 auto;
 }
 .square {
     height: 17em;
@@ -29,7 +26,7 @@ h2 {
 .vertContainer {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: center;
+    align-items: center;
 }
 #blue {
     background-color: #4267A2;
@@ -38,8 +35,8 @@ h2 {
     background-size: auto;
     margin-left: 1em;
 }
-#difficulty {
-    margin-left: 2em;
+#controls {
+    margin-bottom: 1em;
 }
 #green {
     background-color: #3E442B;
@@ -62,7 +59,7 @@ h2 {
 }
 #start {
     width: 10em;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 #yellow {
     background-color: #F8DA47;
