@@ -1,37 +1,41 @@
 body {
     background-color: #cecece;
+    font-family: 'Press Start 2P', cursive;
 }
 
 .button {
     width: 4.5em;
     height: 4.5em;
-    margin-right: 2.7em;
     font-weight: bold;
-    font-family: 'Press Start 2P', cursive;
     box-shadow: 2em;
     text-align: center;
+}
+.calcChild {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-around;
+}
+.calculatorContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 45em;
+    border: 1px solid black;
+    font-size: 18px;
+    background-color: #2D364C;
+    margin: auto;
 }
 
 .display {
     height: 3em;
-    font-family: 'Press Start 2P', cursive;
     font-size: .8em;
     font-weight: bold;
-    text-align: center;
 }
 
-.far-left-button {
-    margin-left: 2.7em;
-}
-
-.fluid-container {
-    width: 40em;
-    border: 1px solid black;
-    margin-left: 2em;
-    margin-bottom: .2em;
-    font-size: 18px;
-    background-color: #2D364C;
-    float: left;
+.horizContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
 }
 
 .num-btn {
@@ -48,15 +52,23 @@ body {
 }
 
 .rounded {
-    border-radius:  .5em;
-}
-
-.spacer {
-    height: 2em;
+    border-radius: .5em;
 }
 
 #btnClear {
     background-color: #DD0000;
+}
+
+#displayContainer {
+    align-self: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#mainContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 
 #msg {
@@ -64,11 +76,6 @@ body {
     font-size: .7em;
     color: red;
     margin-left: 1.6em;
-    font-family: 'Press Start 2P', cursive;
-}
-
-#leftOperand {
-    margin-left: 2em;
 }
 
 #operator {
@@ -76,7 +83,5 @@ body {
 }
 
 #title {
-    margin-top: .2em;
-    margin-left: 2.7em;
-    font-family: 'Press Start 2P', cursive;
+
 }
